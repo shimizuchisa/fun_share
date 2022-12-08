@@ -1,0 +1,5 @@
+ja: # 日本語の設定を行う
+  time: #日本時間、表示形式の設定
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%m/%d"

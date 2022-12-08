@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  root to: 'public/homes#top'
-
-  namespace :public do
-    get 'homes/top'
-  end
-
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, controllers: {
@@ -18,5 +12,15 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: "public/sessions"
   }
+
+  scope module: :public do
+    root 'homes#top'
+    get 'users/mypage' => 'users#show'
+    get 'users/mypage/edit' => 'users#edit'
+    put 'users/mypage' => 'users#update'
+    resources :tasks
+    resources :genres
+
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

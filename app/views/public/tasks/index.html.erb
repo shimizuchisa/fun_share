@@ -1,0 +1,31 @@
+<%= render 'layouts/public_header' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10">
+
+      <table class="table">
+        <tr>
+          <td>日付</td>
+          <td>タイトル</td>
+          <td>登録者</td>
+          <td>進捗状況</td>
+          <td>いいね</td>
+        </tr>
+        <% @tasks.each do |task| %>
+        <tr>
+          <td><%= l task.start_time, format: :short %></td>
+          <td>
+            <%= link_to(task_path(task)) do %>
+              <%= task.title %>
+            <% end %>
+          </td>
+          <td><%= task.user.last_name %><%= task.user.first_name %></td> <!--担当者に変更必要-->
+          <td><%= task.is_finished %></td>
+          <td><%= task.is_finished %></td>
+        </tr>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+</div>
