@@ -1,13 +1,12 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+<%= render 'layouts/admin_header' %>
 
 <div class="container">
   <div class="row">
     <div class="col-md-10 form-group">
-      <%= form_with model: @genre, url: admin_genres_create_path, method: :put do |f| %>
+      <%= form_with model: @genre, url: admin_genres_path, method: :put do |f| %>
         <div class="form-group">
           <%= f.label :name %>
-          <%= f.text_area :name, class: "form-control" %>
+          <%= f.text_field :name, class: "form-control" %>
         </div>
         <div class="form-action">
           <%= f.submit "ジャンル登録", class: "btn btn-success" %>
@@ -22,6 +21,7 @@
           <tr>
             <th>ジャンルID</th>
             <th>名前</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +29,7 @@
           <tr>
             <td><%= genre.id %></td>
             <td><%= genre.name %></td>
+            <td><%= link_to "編集", edit_admin_genre_path(genre), class: "btn btn-primary" %></td>
           </tr>
           <% end %>
         </tbody>

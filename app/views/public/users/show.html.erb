@@ -1,2 +1,37 @@
 <h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+
+<%= render 'layouts/public_header' %>
+
+<div class="container">
+  <h2>会員情報詳細</h2>
+  <div class="row">
+    <div class="col-md-10">
+      <table class="table">
+        <tr>
+          <td>名前</td>
+          <td><%= @user.last_name %><%= @user.first_name %></td>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td><%= @user.telephone_number %></td>
+        </tr>
+        <tr>
+          <td>担当タスク</td>
+          <td><%= @user.charges.count %>件 <%= link_to "一覧", tasks_path, class: "btn btn-primary" %></td>
+        </tr>
+        <tr>
+          <td>登録タスク</td>
+          <td><%= @user.tasks.count %>件 <%= link_to "一覧", tasks_path, class: "btn btn-primary" %></td>
+        </tr>
+      </table>
+
+      <div>
+        <%= link_to "編集", task_path(@task), class: "btn btn-primary" %>
+      </div>
+
+    </div>
+  </div>
+</div>

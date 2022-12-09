@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  namespace :admin do
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :user, only: [:index, :show, :update]
+  end
+
   # 会員用
   # URL /users/sign_in ...
   devise_for :users, controllers: {
@@ -24,8 +29,6 @@ Rails.application.routes.draw do
       # 1人のユーザーは1つのタスクに対して1回のみ担当するだけでいいため
       resources :comments, only: [:create]
     end
-    resources :genres
-
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
