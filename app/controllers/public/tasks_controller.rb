@@ -17,6 +17,9 @@ class Public::TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @charge = Charge.new
+    @comment = Comment.new
+    @comments = @task.comments
   end
 
   def edit

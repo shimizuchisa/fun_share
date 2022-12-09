@@ -40,13 +40,37 @@
           <td><%= @task.is_finished %></td>
         </tr>
       </table>
-
       </div>
       <div class="row">
 
+        <%= link_to task_charges_path(@task), method: :post do %>
+          <div class="btn btn-success">担当する</div>
+        <% end %>
         <%= link_to "タスク編集", edit_task_path(@task), class: "btn btn-primary" %>
+
+        <%= form_with model: @comment, url: task_comments_path(@task), method: :post do |f| %>
+          <table>
+            <tr>
+              <td><%= f.label :comment %></td>
+              <td><%= f.text_area :comment, row: 3 %></td>
+            </tr>
+          </table>
+          <%= f.submit "投稿", class: "btn btn-success" %>
+        <% end %>
       </div>
 
+      <div>
+        <table>
+          <tr>
+            <th>コメント</th>
+          </tr>
+          <% @comments.each do |comment| %>
+          <tr>
+            <td><%= comment.comment %></td>
+          </tr>
+        <% end %>
+        </table>
+      </div>
     </div>
   </div>
 </div>
