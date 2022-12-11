@@ -1,10 +1,20 @@
 class Public::UsersController < ApplicationController
-  def edit
-  end
+
 
   def show
+    @user = current_user
   end
-  
+
+  def edit
+    @user = current_user
+  end
+
+  def edit
+    @user = current_user
+    @user.update(user_params)
+    redirect_to user_mypage(@user)
+  end
+
   private
 
   def user_params

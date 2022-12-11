@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :user, only: [:index, :show, :update]
+    resources :users, only: [:index, :show, :update]
   end
 
   # 会員用

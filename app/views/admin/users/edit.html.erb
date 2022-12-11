@@ -1,2 +1,17 @@
-<h1>Admin::Users#edit</h1>
-<p>Find me in app/views/admin/users/edit.html.erb</p>
+
+<%= render 'layouts/admin_header' %>
+<div class="container">
+  <h2>会員情報編集</h2>
+  <div class="row">
+    <div class="col-md-10">
+      <%= render 'layouts/user_show', user: @user %>
+      <%= form_with model: @user, url: admin_user_path(@user), method: :patch do |f| %>
+        <% f.radio_button :is_deleted, false %>
+        <% f.label :is_deleted, "有効" %>
+        <% f.radio_button :is_deleted, true %>
+        <% f.label :is_deleted, "無効" %>
+        <%= f.submit "編集", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

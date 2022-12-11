@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <td>日付</td>
+      <td>タイトル</td>
+      <td>進捗状況</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% tasks.each do |task| %>
+    <tr>
+      <td><%= task.start_time %></td>
+      <td><%= task.title %></td>
+      <td><%= task.is_finished %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

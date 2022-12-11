@@ -4,11 +4,15 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @user = User.finf(params[:id])
+    @user = User.find(params[:id])
   end
 
+  # def edit
+    # @user = User.find(params[:id])
+  # end
+
   def update
-    @user = User.finf(params[:id])
+    @user = User.find(params[:id])
     @use.update(user_params)
     redirect_to admin_user_path(@user)
   end
