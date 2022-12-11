@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'tasks/index'
+  end
+  namespace :admin do
+    get 'comments/index'
+  end
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, controllers: {
@@ -9,6 +15,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :users, only: [:index, :show, :update]
+    resources :comments, only: [:index, :show, :update]
   end
 
   # 会員用

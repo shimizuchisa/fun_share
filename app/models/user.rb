@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :tasks
   has_many :favorites
   has_many :charges
+  has_many :comments
 end
