@@ -1,15 +1,12 @@
-<h1>Public::Users#show</h1>
-
 <%= render 'layouts/public_header' %>
-
 <div class="container">
   <h2>会員情報詳細</h2>
   <div class="row">
     <div class="col-md-10">
       <%= render 'layouts/user_show', user: @user %>
     </div>
-    <div>
-      <%= link_to "編集", users_mypage_edit_path(@user), class: "btn btn-primary" %>
-    </div>
+  </div>
+  <div>
+    <%= link_to "編集", users_mypage_edit_path, class: "btn btn-primary" %></div>
   </div>
 </div>

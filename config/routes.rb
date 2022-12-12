@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'tasks/index'
-  end
-  namespace :admin do
-    get 'comments/index'
-  end
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, controllers: {
@@ -15,7 +9,10 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :users, only: [:index, :show, :update]
-    resources :comments, only: [:index, :show, :update]
+    resources :tasks, only: [:index, :show, :update] do
+      resources :comments, only: [:index, :show, :update]
+      resources :charges, only: [:index, :show, :update]
+    end
   end
 
   # 会員用
@@ -29,7 +26,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'users/mypage' => 'users#show'
     get 'users/mypage/edit' => 'users#edit'
-    put 'users/mypage' => 'users#update'
+    patch 'users/mypage' => 'users#update'
     resources :tasks do
       resource :charges, only: [:create, :destroy]
       # resource=単数形→ /:idがURLに含まれなくなる

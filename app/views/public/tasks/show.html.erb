@@ -6,66 +6,37 @@
     </div>
     <div class="col-md-7">
       <div class="row">
-      <table class="table">
-        <tr>
-          <td>ジャンル</td>
-          <td><%= @task.genre.name %></td>
-        </tr>
-        <tr>
-          <td>タイトル</td>
-          <td><%= @task.title %></td>
-        </tr>
-        <tr>
-          <td>内容</td>
-          <td><%= @task.body %></td>
-        </tr>
-        <tr>
-          <td>開始時間</td>
-          <td><%= @task.start_time %></td>
-        </tr>
-        <tr>
-          <td>終了時間</td>
-          <td><%= @task.end_time %></td>
-        </tr>
-        <tr>
-          <td>登録者</td>
-          <td><%= @task.user.last_name %> <%= @task.user.first_name %></td>
-        </tr>
-        <tr>
-          <td>担当者</td>
-          <td><%= @task.user.last_name %> <%= @task.user.first_name %></td><!--担当者に変更必要-->
-        </tr>
-        <tr>
-          <td>進捗状況</td>
-          <td><%= @task.is_finished %></td>
-        </tr>
-      </table>
+        <%= render 'layouts/task_show', task: @task %>
       </div>
       <div class="row">
-
         <%= link_to task_charges_path(@task), method: :post do %>
           <div class="btn btn-success">担当する</div>
         <% end %>
+      </div>
+      <div class="row mt-3">
         <%= link_to "タスク編集", edit_task_path(@task), class: "btn btn-primary" %>
-
+      </div>
+      <div class="row mt-3">
         <%= form_with model: @comment, url: task_comments_path(@task), method: :post do |f| %>
           <table>
             <tr>
-              <td><%= f.label :comment %></td>
+              <td><%= f.label :comment, "コメント" %></td>
               <td><%= f.text_area :comment, row: 3 %></td>
+              <td><%= f.submit "投稿", class: "btn btn-success" %></td>
             </tr>
           </table>
-          <%= f.submit "投稿", class: "btn btn-success" %>
         <% end %>
       </div>
 
-      <div>
-        <table>
+      <div class="row mt-3">
+        <table class="table">
           <tr>
+            <th>投稿者</th>
             <th>コメント</th>
           </tr>
           <% @comments.each do |comment| %>
           <tr>
+            <td><%= comment.user.last_name %><%= comment.user.first_name %></td>
             <td><%= comment.comment %></td>
           </tr>
         <% end %>

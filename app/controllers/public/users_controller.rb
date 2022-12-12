@@ -9,10 +9,10 @@ class Public::UsersController < ApplicationController
     @user = current_user
   end
 
-  def edit
+  def update
     @user = current_user
     @user.update(user_params)
-    redirect_to user_mypage(@user)
+    redirect_to users_mypage_path
   end
 
   private
