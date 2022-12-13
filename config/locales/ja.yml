@@ -3,3 +3,9 @@ ja: # 日本語の設定を行う
     formats:
       default: "%Y/%m/%d %H:%M:%S"
       short: "%m/%d"
+  enums:
+      task:
+        is_finished:
+          untouched: "未着手"
+          in_progress: "仕掛中"
+          completed: "完了"

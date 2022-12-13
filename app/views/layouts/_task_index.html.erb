@@ -1,9 +1,4 @@
-<%= render 'layouts/public_header' %>
-<div class="container">
-  <h2>タスク一覧</h2>
-  <div class="row">
-    <div class="col-md-10">
-      <table class="table">
+<table class="table">
         <tr>
           <td>日付</td>
           <td>タイトル</td>
@@ -11,11 +6,11 @@
           <td>進捗状況</td>
           <td>いいね</td>
         </tr>
-        <% @tasks.each do |task| %>
+        <% tasks.each do |task| %>
         <tr>
           <td><%= l task.start_time, format: :short %></td>
           <td>
-            <%= link_to(task_path(task)) do %>
+            <%= link_to(path) do %>
               <%= task.title %>
             <% end %>
           </td>
@@ -25,5 +20,3 @@
         </tr>
         <% end %>
       </table>
-  </div>
-</div>

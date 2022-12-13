@@ -35,6 +35,6 @@ class Public::TasksController < ApplicationController
   private
 
   def task_params
-   params.require(:task).permit(:genre_id, :title, :body, :start_time, :end_time)
+   params.require(:task).permit(:genre_id, :title, :body, :start_time, :end_time, :is_finished)
   end
 end

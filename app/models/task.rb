@@ -9,4 +9,6 @@ class Task < ApplicationRecord
   def charged_by?(user)
     charges.exists?(user_id: user.id)
   end
+
+  enum is_finished: { untouched: 1, in_progress: 2, completed: 3 }
 end

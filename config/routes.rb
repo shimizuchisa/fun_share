@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :users, only: [:index, :show, :update]
-    resources :tasks, only: [:index, :show, :update] do
+    resources :tasks, only: [:index, :show, :edit, :update] do
       resources :comments, only: [:index, :show, :update]
       resources :charges, only: [:index, :show, :update]
     end

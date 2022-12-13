@@ -1,12 +1,10 @@
-<%= render 'layouts/public_header' %>
-
+<%= render 'layouts/admin_header' %>
 <div class="container">
+  <h2>タスク編集</h2>
   <div class="row">
     <div class="col-md-10">
-      <div class="row">
-      <%= form_with model: @task, url: task_path(@task), method: :patch do |f| %>
+        <%= form_with model: @task, url: admin_task_path(@task), method: :patch do |f| %>
         <table class="table">
-      		<tbody>
           <tr>
             <td><%= f.label :genre_id, "ジャンル" %></td>
             <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %></td>
@@ -30,15 +28,14 @@
           </tr>
           <tr>
             <td><%= f.label :is_finished, "進捗状況" %></td>
-            <td><%= f.select :is_finished, Task.is_finisheds.keys.map {|k| [I18n.t("enums.task.is_finished.#{k}"), k]} %></td>
+            <!--<td>%= f.select %></td>-->
           </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="row">
-        <%= f.submit "変更を保存", class: "btn btn-success" %>
-      </div>
-      <% end %>
+          <tr>
+            <td><%= f.submit "変更を保存", class: "btn btn-success" %></td>
+          </tr>
+      </table>
+    <% end %>
+
     </div>
   </div>
 </div>
