@@ -5,6 +5,7 @@ class Admin::TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @charges = @task.charges
   end
 
   def edit

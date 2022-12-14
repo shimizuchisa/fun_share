@@ -9,6 +9,9 @@
       <div class="row">
         <%= link_to "編集する", edit_admin_task_path(@task), class: "btn btn-primary" %>
       </div>
+      <div class="row">
+        <%= render 'layouts/charge_index', charges: @charges %>
+      </div>
     </div>
   </div>
 </div>

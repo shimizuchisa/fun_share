@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     resources :tasks do
       resource :charges, only: [:create, :destroy]
       # resource=単数形→ /:idがURLに含まれなくなる
-      # 1人のユーザーは1つのタスクに対して1回のみ担当するだけでいいため
+      # 1人のユーザーは1つのタスクに対して1担当するため
       resources :comments, only: [:create]
     end
   end

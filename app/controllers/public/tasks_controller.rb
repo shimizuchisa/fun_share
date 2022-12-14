@@ -12,12 +12,12 @@ class Public::TasksController < ApplicationController
     @task.user_id = current_user.id
     @task.save
     redirect_to task_path(@task)
-
   end
 
   def show
     @task = Task.find(params[:id])
     @charge = Charge.new
+    @charges = @task.charges
     @comment = Comment.new
     @comments = @task.comments
   end

@@ -1,0 +1,14 @@
+<table class="table">
+  <h3>担当者</h3>
+  <% if charges.exists? %>
+    <% charges.each do |charge| %>
+      <tr>
+        <td><%= charge.user.last_name %><%= charge.user.first_name %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td>担当者が決まっていません</td>
+    </tr>
+  <% end %>
+</table>
