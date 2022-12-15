@@ -1,5 +1,6 @@
 class Public::CommentsController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def create
     task = Task.find(params[:task_id])
     @comment = Comment.new(comment_params)

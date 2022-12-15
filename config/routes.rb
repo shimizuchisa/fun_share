@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
+    root 'tasks#index'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :users, only: [:index, :show, :update]
     resources :tasks, only: [:index, :show, :edit, :update] do
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
     get 'users/mypage/edit' => 'users#edit'
     patch 'users/mypage' => 'users#update'
     resources :tasks do
+      resource :favorites, only: [:create, :destroy]
       resource :charges, only: [:create, :destroy]
       # resource=単数形→ /:idがURLに含まれなくなる
       # 1人のユーザーは1つのタスクに対して1担当するため

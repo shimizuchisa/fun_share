@@ -10,5 +10,9 @@ class Task < ApplicationRecord
     charges.exists?(user_id: user.id)
   end
 
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
+  end
+
   enum is_finished: { untouched: 1, in_progress: 2, completed: 3 }
 end

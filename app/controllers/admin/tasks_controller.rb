@@ -1,4 +1,6 @@
 class Admin::TasksController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @tasks = Task.all
   end
@@ -6,6 +8,7 @@ class Admin::TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @charges = @task.charges
+    @comments = @task.comments
   end
 
   def edit

@@ -22,8 +22,8 @@
             <% end %>
           </td>
           <td><%= task.user.last_name %><%= task.user.first_name %></td> <!--担当者に変更必要-->
-          <td><%= task.is_finished %></td>
-          <td><%= task.is_finished %></td>
+          <td><%= task.is_finished_i18n %></td>
+          <td>❤︎<%= task.favorites.count %>件</td>
         </tr>
         <% end %>
       </table>

@@ -30,7 +30,8 @@
           </tr>
           <tr>
             <td><%= f.label :is_finished, "進捗状況" %></td>
-            <td><%= f.select :is_finished, Task.is_finisheds.keys.map {|k| [I18n.t("enums.task.is_finished.#{k}"), k]} %></td>
+            <td><%= f.select :is_finished, Task.is_finisheds_i18n.invert %></td>
+            <!--.inverで表示を日本語・送るvalueを英語にする-->
           </tr>
           </tbody>
         </table>

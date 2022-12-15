@@ -1,4 +1,6 @@
 class Public::TasksController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
     @tasks = Task.all
   end
@@ -20,6 +22,7 @@ class Public::TasksController < ApplicationController
     @charges = @task.charges
     @comment = Comment.new
     @comments = @task.comments
+    @favorite = Favorite.new
   end
 
   def edit
