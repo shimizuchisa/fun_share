@@ -2,11 +2,14 @@ class Public::TasksController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @tasks = Task.all
+    # @tasks = Task.all
+    @events = Task.all
   end
 
   def new
-    @task = Task.new
+    # @task = Task.new
+    @event = Task.new
+    render plain: render_to_string(partial: 'form_new', layout: false, locals: { event: @event })
   end
 
   def create
