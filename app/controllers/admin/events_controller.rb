@@ -1,6 +1,6 @@
-class Admin::TasksController < ApplicationController
+class Admin::EventsController < ApplicationController
   before_action :authenticate_admin!
-  
+
   def index
     @tasks = Task.all
   end

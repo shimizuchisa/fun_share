@@ -1,4 +1,4 @@
 class Charge < ApplicationRecord
-  belongs_to :task
+  belongs_to :event
   belongs_to :user
 end

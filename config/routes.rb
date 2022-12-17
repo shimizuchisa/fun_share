@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     root 'tasks#index'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :users, only: [:index, :show, :update]
-    resources :tasks, only: [:index, :show, :edit, :update] do
+    resources :events, only: [:index, :show, :edit, :update] do
       resources :comments, only: [:index, :show, :update]
       resources :charges, only: [:index, :show, :update]
     end
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     get 'users/mypage' => 'users#show'
     get 'users/mypage/edit' => 'users#edit'
     patch 'users/mypage' => 'users#update'
-    resources :tasks do
+    resources :events do
       resource :favorites, only: [:create, :destroy]
       resource :charges, only: [:create, :destroy]
       # resource=単数形→ /:idがURLに含まれなくなる

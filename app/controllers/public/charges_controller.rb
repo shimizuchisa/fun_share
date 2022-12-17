@@ -1,20 +1,20 @@
 class Public::ChargesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def create
-    task = Task.find(params[:task_id])
+    event = Event.find(params[:task_id])
     charge = Charge.new
     charge.user_id =current_user.id
-    charge.task_id =task.id
+    charge.task_id =event.id
     charge.save
-    redirect_to task_path(task)
+    redirect_to event_path(event)
   end
 
   def destroy
-    task = Task.find(params[:task_id])
-    charge = current_user.charges.find_by(task_id: task.id)
+    event = Event.find(params[:task_id])
+    charge = current_user.charges.find_by(task_id: event.id)
     charge.destroy
-    redirect_to task_path(task)
+    redirect_to event_path(event)
   end
 
 end

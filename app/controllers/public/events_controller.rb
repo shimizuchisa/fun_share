@@ -1,6 +1,6 @@
-class Public::TasksController < ApplicationController
+class Public::EventsController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     # @tasks = Task.all
     @events = Task.all
