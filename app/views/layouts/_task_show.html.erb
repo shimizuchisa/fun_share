@@ -1,34 +1,34 @@
  <table class="table">
         <tr>
           <td>ジャンル</td>
-          <td><%= task.genre.name %></td>
+          <td><%= event.genre.name %></td>
         </tr>
         <tr>
           <td>タイトル</td>
-          <td><%= task.title %></td>
+          <td><%= event.title %></td>
         </tr>
         <tr>
           <td>内容</td>
-          <td><%= task.body %></td>
+          <td><%= event.body %></td>
         </tr>
         <tr>
           <td>開始時間</td>
-          <td><%= l task.start_time, format: :short %></td>
+          <td><%= l event.start_time, format: :short %></td>
         </tr>
         <tr>
           <td>終了時間</td>
-          <td><%= l task.end_time, format: :short %></td>
+          <td><%= l event.end_time, format: :short %></td>
         </tr>
         <tr>
           <td>登録者</td>
-          <td><%= task.user.last_name %> <%= @task.user.first_name %></td>
+          <td><%= event.user.last_name %> <%= @event.user.first_name %></td>
         </tr>
         <!--<tr>-->
           <!--<td>担当者</td>-->
-          <!--<td>%= task.user.last_name %> %= @task.user.first_name %></td><!--担当者に変更必要-->
+          <!--<td>%= event.user.last_name %> %= @event.user.first_name %></td><!--担当者に変更必要-->
         <!--</tr>-->
         <tr>
           <td>進捗状況</td>
-          <td><%= task.is_finished_i18n %></td>
+          <td><%= event.is_finished_i18n %></td>
         </tr>
       </table>

@@ -3,7 +3,7 @@
   <h2>タスク編集</h2>
   <div class="row">
     <div class="col-md-10">
-        <%= form_with model: @task, url: admin_task_path(@task), method: :patch do |f| %>
+        <%= form_with model: @event, url: admin_event_path(@event), method: :patch do |f| %>
         <table class="table">
           <tr>
             <td><%= f.label :genre_id, "ジャンル" %></td>

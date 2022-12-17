@@ -12,10 +12,10 @@
         </tr>
         <tr>
           <td>担当タスク</td>
-          <td><%= user.charges.count %>件 <%= link_to "一覧", tasks_path, class: "btn btn-primary" %></td>
+          <td><%= user.charges.count %>件 <%= link_to "一覧", events_path, class: "btn btn-primary" %></td>
         </tr>
         <tr>
           <td>登録タスク</td>
-          <td><%= user.tasks.count %>件 <%= link_to "一覧", tasks_path, class: "btn btn-primary" %></td>
+          <td><%= user.events.count %>件 <%= link_to "一覧", events_path, class: "btn btn-primary" %></td>
         </tr>
       </table>

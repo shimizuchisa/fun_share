@@ -2,17 +2,17 @@ class Public::FavoritesController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    task = Task.find(params[:task_id])
-    favorite = current_user.favorites.new(task_id: task.id)
+    event = Event.find(params[:event_id])
+    favorite = current_user.favorites.new(event_id: event.id)
     favorite.save
-    redirect_to task_path(task)
+    redirect_to event_path(event)
   end
 
   def destroy
-    task = Task.find(params[:task_id])
-    favorite = current_user.favorites.find_by(task_id: task.id)
+    event = Event.find(params[:event_id])
+    favorite = current_user.favorites.find_by(event_id: event.id)
     favorite.destroy
-    redirect_to task_path(task)
+    redirect_to event_path(event)
   end
 
 end

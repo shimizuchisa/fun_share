@@ -3,44 +3,44 @@ class Public::EventsController < ApplicationController
 
   def index
     # @tasks = Task.all
-    @events = Task.all
+    @events = Event.all
   end
 
   def new
     # @task = Task.new
-    @event = Task.new
+    @event = Event.new
     render plain: render_to_string(partial: 'form_new', layout: false, locals: { event: @event })
   end
 
   def create
-    @task = Task.new(task_params)
-    @task.user_id = current_user.id
-    @task.save
-    redirect_to task_path(@task)
+    @event = Event.new(event_params)
+    @event.user_id = current_user.id
+    @event.save
+    redirect_to event_path(@event)
   end
 
   def show
-    @task = Task.find(params[:id])
+    @event = Event.find(params[:id])
     @charge = Charge.new
-    @charges = @task.charges
+    @charges = @event.charges
     @comment = Comment.new
-    @comments = @task.comments
+    @comments = @event.comments
     @favorite = Favorite.new
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def update
-    @task = Task.find(params[:id])
-    @task.update(task_params)
-    redirect_to task_path(@task)
+    @event = Event.find(params[:id])
+    @event.update(event_params)
+    redirect_to event_path(@event)
   end
 
   private
 
-  def task_params
-   params.require(:task).permit(:genre_id, :title, :body, :start_time, :end_time, :is_finished)
+  def event_params
+   params.require(:event).permit(:genre_id, :title, :body, :start_time, :end_time, :is_finished)
   end
 end

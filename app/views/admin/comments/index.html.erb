@@ -14,10 +14,10 @@
         <tbody>
           <% @comments.each do |comment| %>
           <tr>
-            <td><%= l comment.task.start_time %></td>
+            <td><%= l comment.event.start_time %></td>
             <td>
-              <%= link_to(admin_task_path(comment.task_id)) do %>
-                <%= comment.task.title %>
+              <%= link_to(admin_event_path(comment.event_id)) do %>
+                <%= comment.event.title %>
               <% end %>
             </td>
             <td><%= comment.user.last_name %></td>

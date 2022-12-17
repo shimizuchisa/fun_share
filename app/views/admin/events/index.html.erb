@@ -3,7 +3,7 @@
   <h2>タスク一覧</h2>
   <div class="row">
     <div class="col-md-10">
-      <!--%= render partial: 'layouts/task_index', locals: {tasks: @tasks, path: admin_task_path(task) } %>-->
+      <!--%= render partial: 'layouts/event_index', locals: {events: @events, path: admin_event_path(event) } %>-->
       <!--%= render partial: 'hoge', locals: { name: "山田", adress: "東京都渋谷区", age: 20 } %>-->
       <table class="table">
         <tr>
@@ -13,17 +13,17 @@
           <td>進捗状況</td>
           <td>いいね</td>
         </tr>
-        <% @tasks.each do |task| %>
+        <% @events.each do |event| %>
         <tr>
-          <td><%= l task.start_time, format: :short %></td>
+          <td><%= l event.start_time, format: :short %></td>
           <td>
-            <%= link_to(admin_task_path(task)) do %>
-              <%= task.title %>
+            <%= link_to(admin_event_path(event)) do %>
+              <%= event.title %>
             <% end %>
           </td>
-          <td><%= task.user.last_name %><%= task.user.first_name %></td> <!--担当者に変更必要-->
-          <td><%= task.is_finished_i18n %></td>
-          <td>❤︎<%= task.favorites.count %>件</td>
+          <td><%= event.user.last_name %><%= event.user.first_name %></td> <!--担当者に変更必要-->
+          <td><%= event.is_finished_i18n %></td>
+          <td>❤︎<%= event.favorites.count %>件</td>
         </tr>
         <% end %>
       </table>

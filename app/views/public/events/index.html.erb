@@ -11,17 +11,17 @@
           <td>進捗状況</td>
           <td>いいね</td>
         </tr>
-        <% @tasks.each do |task| %>
+        <% @events.each do |event| %>
         <tr>
-          <td><%= l task.start_time, format: :short %></td>
+          <td><%= l event.start_time, format: :short %></td>
           <td>
-            <%= link_to(task_path(task)) do %>
-              <%= task.title %>
+            <%= link_to(event_path(event)) do %>
+              <%= event.title %>
             <% end %>
           </td>
-          <td><%= task.user.last_name %><%= task.user.first_name %></td> <!--担当者に変更必要-->
-          <td><%= task.is_finished_i18n %></td>
-          <td>❤︎<%= task.favorites.count %>件</td>
+          <td><%= event.user.last_name %><%= event.user.first_name %></td> <!--担当者に変更必要-->
+          <td><%= event.is_finished_i18n %></td>
+          <td>❤︎<%= event.favorites.count %>件</td>
         </tr>
         <% end %>
       </table>
