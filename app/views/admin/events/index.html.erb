@@ -1,5 +1,9 @@
 <%= render 'layouts/admin_header' %>
 <div class="container">
+  <div id='calendar'></div>
+<!--カレンダー表示-->
+
+<%= javascript_pack_tag 'calendar/event' %>
   <h2>タスク一覧</h2>
   <div class="row">
     <div class="col-md-10">

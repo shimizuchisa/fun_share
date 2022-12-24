@@ -29,27 +29,29 @@ document.addEventListener('turbolinks:load', function() {
         },
         allDayText: '終日',
         height: "auto",
+        events: '/events.json',// '/コントローラー名.json',
+        navLinks: true,
+	    selectable: true,
+	    selectHelper: true,
+        // 日付クリック
+			dateClick : function ( date , jsEvent , view ) {
+				$('#inputScheduleForm').modal('show');
+				},
 
-        dateClick: function(info){
-            //日付をクリックしたときのイベント
-        },
-        eventClick: function(info){
-            //表示されたイベントをクリックしたときのイベント
-        },
-        eventClassNames: function(arg){
-            //表示されたイベントにclassをcss用に追加する
-        }
-        events: '/tasks.json',
-        // 書き方のルールとしては['/コントローラー名.json']
+			// event クリックで編集、削除
+			eventClick : function(event, jsEvent , view) {
+	    		jsEvent.preventDefault();
+				$(`#inputScheduleEditForm${event.id}`).modal('show');
+	  		},
+
+	  		eventMouseover : function(event, jsEvent , view) {
+	    		jsEvent.preventDefault();
+	  		}
+
+
     });
 
     //カレンダー表示
     calendar.render();
-
-    //成功、失敗modalを閉じたときに予定を再更新してくれます
-    //これがないと追加しても自動更新されません
-    $(".error").click(function(){
-        calendar.refetchEvents();
-    });
 
 });
