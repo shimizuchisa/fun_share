@@ -20,6 +20,7 @@ class Public::EventsController < ApplicationController
   end
 
   def show
+    @events = Event.all
     @event = Event.find(params[:id])
     @charge = Charge.new
     @charges = @event.charges

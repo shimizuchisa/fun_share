@@ -23,6 +23,7 @@
 
           <div class="actions">
             <%= f.submit "ログイン", class: "btn btn-success" %>
+            <%= link_to "ゲストログインはこちら（閲覧用）", public_guest_sign_in_path, method: :post, class: "btn btn-danger"  %>
           </div>
           <%= render "public/shared/links" %>
         <% end %>

@@ -1,11 +1,23 @@
 <%= render 'layouts/public_header' %>
 <div class="container">
-
+  <h1>タスク詳細</h1>
   <div class="row">
     <div class="col-md-4">
+      <%= week_calendar events: @events do |date, events| %>
+        <div>
+          <%= date.day %>
+        </div>
+          <% events.each do |event| %>
+            <%= link_to(event_path(event)) do %>
+              <div>
+                <%= event.title %>
+              </div>
+            <% end %>
+          <% end %>
+      <% end %>
     </div>
-    <div class="col-md-7">
-      <h1>タスク詳細</h1>
+
+    <div class="col-md-7 offset-1">
       <div class="row">
         <%= render 'layouts/event_show', event: @event %>
       </div>
@@ -53,6 +65,7 @@
               <%= f.submit "投稿する", class: "btn btn-success" %>
             <% end %>
           </table>
+
       </div>
     </div>
   </div>

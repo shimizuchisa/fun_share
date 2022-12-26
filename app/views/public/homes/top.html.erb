@@ -1,53 +1,22 @@
 <%= render 'layouts/public_header' %>
-
-<div id='calendar'></div>
-<!--カレンダー表示-->
-
-<%= javascript_pack_tag 'calendar/event' %>
-
 <div class="container">
   <div class="row">
-    <div id="inputScheduleForm" class="modal fade" tabindex="-1">
-      <!--class="modal fade" フェードインする-->
-			<div class="modal-dialog modal-nm">
-			  <!--モーダルダイアログの最大の横幅を指定-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">スケジュール登録</h4>
-					</div>
-					<div class="modal-body">
-					  <%= form_with model: @event, url: events_path do |f| %>
-            <table class="table">
-              <tr>
-                <td><%= f.label :genre_id, "ジャンル" %></td>
-                <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %></td>
-                <!--f.select :プロパティ名, options_from_collection_for_select(モデル, :フォームで送る値(メソッド), :セレクトボックスに表示する値(メソッド))-->
-              </tr>
-              <tr>
-                <td><%= f.label :title, "タイトル" %></td>
-                <td><%= f.text_field :title %></td>
-              </tr>
-              <tr>
-                <td><%= f.label :body, "内容" %></td>
-                <td><%= f.text_area :body, row: 3 %></td>
-              </tr>
-              <tr>
-                <td><%= f.label :start_time, "開始時間" %></td>
-                <td><%= f.datetime_field :start_time %></td>
-              </tr>
-              <tr>
-                <td><%= f.label :end_time, "終了時間" %></td>
-                <td><%= f.datetime_field :end_time %></td>
-              </tr>
-              <tr>
-                <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
-              </tr>
-            </table>
-            <% end %>
-            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-          </div>
+    <div class="col-12 text-center">
+      <h1>1週間の予定</h1>
+
+    <div class="col-8 mt-3">
+      <%= month_calendar events: @events do |date, events| %>
+        <div>
+          <%= date.day %>
         </div>
-      </div>
+          <% events.each do |event| %>
+            <%= link_to(event_path(event)) do %>
+              <div>
+                <%= event.title %>
+              </div>
+            <% end %>
+          <% end %>
+      <% end %>
     </div>
   </div>
 </div>
