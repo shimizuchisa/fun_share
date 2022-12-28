@@ -3,18 +3,13 @@
   <h1>タスク詳細</h1>
   <div class="row">
     <div class="col-md-4">
-      <%= week_calendar events: @events do |date, events| %>
-        <div>
-          <%= date.day %>
-        </div>
-          <% events.each do |event| %>
-            <%= link_to(event_path(event)) do %>
-              <div>
-                <%= event.title %>
-              </div>
-            <% end %>
-          <% end %>
-      <% end %>
+      <div class="text-center">
+        <%= week_calendar events: @events do |date| %>
+          <div>
+            <%= date.day %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
     <div class="col-md-7 offset-1">

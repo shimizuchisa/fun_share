@@ -2,10 +2,11 @@
 <div class="container">
   <div class="row">
     <div class="col-12 text-center">
-      <h1>1週間の予定</h1>
+      <h1>カレンダー</h1>
 
     <div class="col-8 mt-3">
-      <%= month_calendar events: @events do |date, events| %>
+      <!--%= month_calendar events: @events do |date, events| %>-->
+       <%= month_calendar events: @events do |date, events| %>
         <div>
           <%= date.day %>
         </div>
@@ -16,7 +17,9 @@
               </div>
             <% end %>
           <% end %>
-      <% end %>
+        <% end %>
     </div>
   </div>
+  </div>
+
 </div>
