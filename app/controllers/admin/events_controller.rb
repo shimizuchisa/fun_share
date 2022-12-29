@@ -24,6 +24,6 @@ class Admin::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit.(:genre_id, :user_id, :title, :body, :start_time, :end_time, :is_finished)
+    params.require(:event).permit(:genre_id, :user_id, :start_on, :title, :body, :start_time, :end_time, :is_finished)
   end
 end

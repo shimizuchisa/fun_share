@@ -4,6 +4,7 @@ class Public::EventsController < ApplicationController
   def index
     # @tasks = Task.all
     @events = Event.all
+    @events = @events.where('title LIKE ?',"%#{params[:search]}%") if params[:search].present?
   end
 
   def new
@@ -42,6 +43,6 @@ class Public::EventsController < ApplicationController
   private
 
   def event_params
-   params.require(:event).permit(:genre_id, :title, :body, :start_time, :end_time, :is_finished)
+    params.require(:event).permit(:genre_id, :title, :body, :start_on, :start_time, :end_time, :is_finished)
   end
 end

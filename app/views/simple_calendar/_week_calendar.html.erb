@@ -2,10 +2,9 @@
   <div class="calendar-heading">
     <!--<%= link_to t('simple_calendar.previous', default: '<< '), calendar.url_for_previous_view %>-->
     <% if calendar.number_of_weeks == 1 %>
-      <span class="calendar-title"><%= l @event.start_time, format: :day %>日</span>
-      <!--<span class="calendar-title"><%= start_date.year %>年 <%= start_date.month %>月<%= start_date.day %>日</span>-->
+      <span class="calendar-title"><%= @event.start_on %><%= check_days %></span>
     <% else %>
-      <span class="calendar-title"><%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %> - <%= calendar.end_week %></span>
+      <!--<span class="calendar-title">%= t('simple_calendar.week', default: 'Week') %> <%= calendar.week_number %> - <%= calendar.end_week %></span>-->
     <% end %>
     <!--<%= link_to t('simple_calendar.next', default: ' >>'), calendar.url_for_next_view %>-->
   </div>
@@ -13,10 +12,9 @@
   <table class="table">
     <thead>
       <tr>
-        <th></th>
-        <% date_range.slice(0, 1).each do |day| %>
-          <th><%= t('date.abbr_day_names')[day.wday] %></th>
-        <% end %>
+        <!--% date_range.slice(0, 1).each do |day| %>-->
+          <!--<th>%= @event.start_on.abbr_day_names %></th>-->
+        <!--% end %>-->
       </tr>
     </thead>
     <tbody>
@@ -27,8 +25,10 @@
           <td>
             <div>
               <% @events.each do |event| %>
-                <% if event.date.year == @event.date.year && event.date.month == @event.date.month && event.date.day == @event.date.day  %>
-                  <%= event.title %>
+                <% if event.start_on == @event.start_on  %>
+                  <div>
+                    <%= event.title %>
+                  </div>
                 <% end %>
               <% end %>
             </div>

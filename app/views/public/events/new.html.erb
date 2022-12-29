@@ -1,15 +1,7 @@
-<!--%= render 'layouts/public_header' %>-->
+<%= render 'layouts/public_header' %>
 <div class="container">
   <div class="row">
-    <div id="inputScheduleForm" class="modal fade" tabindex="-1">
-      <!--class="modal fade" フェードインする-->
-			<div class="modal-dialog modal-nm">
-			  <!--モーダルダイアログの最大の横幅を指定-->
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">スケジュール登録</h4>
-					</div>
-					<div class="modal-body">
+					<div class="col-md-10">
 					  <%= form_with model: @event, url: events_path do |f| %>
             <table class="table">
               <tr>
@@ -26,6 +18,10 @@
                 <td><%= f.text_area :body, row: 3 %></td>
               </tr>
               <tr>
+                <td><%= f.label :start_on, "日付" %></td>
+                <td><%= f.date_field :start_on %></td>
+              </tr>
+              <tr>
                 <td><%= f.label :start_time, "開始時間" %></td>
                 <td><%= f.datetime_field :start_time %></td>
               </tr>
@@ -38,10 +34,6 @@
               </tr>
             </table>
             <% end %>
-            <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>

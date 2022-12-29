@@ -19,6 +19,10 @@
             <td><%= f.text_area :body, row: 3 %></td>
           </tr>
           <tr>
+            <td><%= f.label :start_on, "日付" %></td>
+            <td><%= f.date_field :start_on %></td>
+          </tr>
+          <tr>
             <td><%= f.label :start_time, "開始時間" %></td>
             <td><%= f.datetime_field :start_time %></td>
           </tr>
@@ -28,7 +32,7 @@
           </tr>
           <tr>
             <td><%= f.label :is_finished, "進捗状況" %></td>
-            <!--<td>%= f.select %></td>-->
+            <td><%= f.select :is_finished, Event.is_finisheds_i18n.invert %></td>
           </tr>
           <tr>
             <td><%= f.submit "変更を保存", class: "btn btn-success" %></td>
