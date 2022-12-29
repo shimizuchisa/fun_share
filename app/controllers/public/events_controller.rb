@@ -2,9 +2,13 @@ class Public::EventsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # @tasks = Task.all
-    @events = Event.all
-    @events = @events.where('title LIKE ?',"%#{params[:search]}%") if params[:search].present?
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @events = @genre.events
+    else
+      @events = Event.all
+    end
+    @events = @events.where('title LIKE ?',"%#{params[:search]}%") if params[:search]
   end
 
   def new

@@ -27,10 +27,16 @@
       </div>
     </nav>
   </div>
-  <div>
+  <div class="container">
+  <div class="col-3 ml-auto">
     <%= form_with url: events_path, method: :get do |f| %>
-      <%= f.text_field :search %>
-      <%= f.submit "検索", class: "btn btn-primary" %>
+      <table>
+        <tr>
+          <td><%= f.text_field :search, class: "form-control" %></td>
+          <td><%= f.submit "検索", class: "btn btn-primary" %></td>
+        </tr>
+      </table>
     <% end %>
+    </div>
   </div>
 </header>

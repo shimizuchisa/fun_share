@@ -2,6 +2,14 @@
 <div class="container">
   <h2>タスク一覧</h2>
   <div class="row">
+    <h3>ジャンル検索</h3>
+    <%= form_with url: events_path, method: :get do |f| %>
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %>
+      <%= f.submit "検索"%>
+    <% end %>
+  </div>
+
+  <div class="row">
     <div class="col-md-10">
       <table class="table">
         <tr>
