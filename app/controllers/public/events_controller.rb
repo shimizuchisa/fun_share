@@ -5,6 +5,9 @@ class Public::EventsController < ApplicationController
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @events = @genre.events
+    elsif params[:user_id]
+      @user = current_user
+      @events = @user.events
     else
       @events = Event.all
     end
