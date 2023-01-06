@@ -30,18 +30,18 @@
           <% end %>
         </p>
       <% end %>
-
-      <div class="row">
-        <%= link_to "タスク編集", edit_event_path(@event), class: "btn btn-primary" %>
-      </div>
-
+      <% if @event.user == current_user %>
+        <div class="row">
+          <%= link_to "タスク編集", edit_event_path(@event), class: "btn btn-primary" %>
+        </div>
+      <% end %>
       <div class="row mt-4">
         <%= render 'layouts/charge_index', charges: @charges %>
       </div>
       <% if @event.charged_by?(current_user) %>
         <div class="row">
           <%= link_to event_charges_path(@event), method: :delete do %>
-            <btn class="btn btn-success">辞退する</btn>
+            <btn class="btn btn-danger">辞退する</btn>
           <% end %>
         </div>
       <% else %>

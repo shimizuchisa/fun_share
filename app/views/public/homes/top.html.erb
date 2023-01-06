@@ -1,12 +1,9 @@
 <%= render 'layouts/public_header' %>
 <div class="container">
+  <h1>カレンダー</h1>
   <div class="row">
-    <div class="col-12 text-center">
-      <h1>カレンダー</h1>
-
-    <div class="col-8 mt-3">
-      <!--%= month_calendar events: @events do |date, events| %>-->
-       <%= month_calendar events: @events do |date, events| %>
+    <div class="col-10 text-center">
+      <%= month_calendar events: @events do |date, events| %>
         <div>
           <%= date.day %>
         </div>
@@ -20,6 +17,4 @@
         <% end %>
     </div>
   </div>
-  </div>
-
 </div>

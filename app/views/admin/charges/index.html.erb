@@ -1,0 +1,24 @@
+<%= render "layouts/admin_header" %>
+<div class="container">
+  <duv class="row">
+    <div class="col-md-10">
+      <h3>担当タスク一覧</h3>
+      <table class="table">
+        <tr>
+          <td>日付</td>
+          <td>タスク名</td>
+          <td>進捗状況</td>
+          <td></td>
+        </tr>
+       <% @charges.each do |charge|%>
+        <tr>
+          <td><%= charge.event.start_on %></td>
+          <td><%= charge.event.title %></td>
+          <td><%= charge.event.is_finished %></td>
+          <td><%= link_to "詳細", event_path(charge), class: "btn btn-primary" %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </duv>
+</div>

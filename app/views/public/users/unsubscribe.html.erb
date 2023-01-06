@@ -1,0 +1,13 @@
+<%= render 'layouts/public_header' %>
+<div class="container">
+  <h2>会員情報詳細</h2>
+  <div class="row mt-5">
+    <div class="col-md-10">
+      <h3>退会しますか?</h3>
+      <p>退会すれば、すべてのタスクの確認、編集、新規登録ができなくなります。</p>
+      <%= link_to "マイページに戻る", users_mypage_path, class: "btn btn-primary" %>
+      <%= link_to "退会する", users_withdraw_path, method: :patch, class: "btn btn-danger" %></div>
+    </div>
+  </div>
+</div>
+

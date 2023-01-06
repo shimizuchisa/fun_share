@@ -2,7 +2,12 @@ class Admin::EventsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @events = Event.all
+    if params[:user_id]
+      @user = User.find_by(id: params[:user_id])
+      @events = @user.events
+    else
+      @events = Event.all
+    end
   end
 
   def show

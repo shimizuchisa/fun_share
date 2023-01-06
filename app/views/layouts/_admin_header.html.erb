@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
-              <li class="nav-item"><%= link_to "カレンダー", root_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "カレンダー", admin_root_path, class: "nav-link" %></li>
               <li class="nav-item"><%= link_to "会員一覧", admin_users_path, class: "nav-link" %></li>
               <li class="nav-item"><%= link_to "タスク一覧", admin_events_path, class: "nav-link" %></li>
               <!--<li class="nav-item">%= link_to "コメント一覧", admin_comments_path, class: "nav-link" %></li>-->

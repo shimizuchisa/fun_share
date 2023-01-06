@@ -2,16 +2,21 @@ class Public::EventsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @user = current_user
+    @chareges = @user.charges
     if params[:genre_id]
       @genre = Genre.find(params[:genre_id])
       @events = @genre.events
     elsif params[:user_id]
-      @user = current_user
+      @user = User.find(params[:user_id])
       @events = @user.events
+    elsif params[:is_finished]
+      @events = Event.where(is_finished: params[:is_finished])
     else
       @events = Event.all
     end
     @events = @events.where('title LIKE ?',"%#{params[:search]}%") if params[:search]
+
   end
 
   def new

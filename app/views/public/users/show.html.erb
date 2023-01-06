@@ -16,13 +16,27 @@
           <td><%= @user.telephone_number %></td>
         </tr>
         <tr>
-          <td>担当タスク</td>
-          <td><%= @user.charges.count %>件 <%= link_to "一覧", events_path, class: "btn btn-primary" %></td>
-        </tr>
-        <tr>
           <td>登録タスク</td>
           <td><%= @user.events.count %>件 <%= link_to "一覧", events_path(user_id: current_user.id), class: "btn btn-primary" %></td>
         </tr>
+      </table>
+
+      <h3>担当タスク一覧</h3>
+      <table class="table">
+        <tr>
+          <td>日付</td>
+          <td>タスク名</td>
+          <td>進捗状況</td>
+          <td></td>
+        </tr>
+        <% @user.charges.each do |charge|%>
+        <tr>
+          <td><%= charge.event.start_on %></td>
+          <td><%= charge.event.title %></td>
+          <td><%= charge.event.is_finished %></td>
+          <td><%= link_to "詳細", event_path(charge), class: "btn btn-primary" %></td>
+        </tr>
+        <% end %>
       </table>
     </div>
   </div>

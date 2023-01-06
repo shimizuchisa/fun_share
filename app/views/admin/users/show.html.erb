@@ -3,23 +3,53 @@
   <h2>会員情報詳細</h2>
   <div class="row">
     <div class="col-md-10">
-      <%= render 'layouts/user_show', user: @user %>
-      <%= form_with model: @user, url: admin_user_path(@user), method: :patch do |f| %>
-        <table>
-          <tr>
-            <td><%= f.label :is_deleted, "会員ステータス" %></td>
-            <td>
-              <%= f.radio_button :is_deleted, false %>
-              <%= f.label :is_deleted, "有効" %>
-            </td>
-            <td>
-              <%= f.radio_button :is_deleted, true %>
-              <%= f.label :is_deleted, "無効" %>
-            </td>
-            <td><%= f.submit "ステータスを変更", class: "btn btn-primary" %></td>
-          </tr>
-        </table>
-      <% end %>
+      <table class="table">
+        <tr>
+          <td>名前</td>
+          <td><%= @user.last_name %><%= @user.first_name %></td>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td><%= @user.telephone_number %></td>
+        </tr>
+        <tr>
+          <td>登録タスク</td>
+          <td><%= @user.events.count %>件</td>
+          <td><%= link_to "一覧", admin_events_path(user_id: @user.id), class: "btn btn-primary" %></td>
+        </tr>
+        <tr>
+          <td>会員ステータス</td>
+          <% if @user.is_deleted == false %>
+            <td>有効</td>
+          <% elsif @user.is_deleted == true %>
+            <td>退会</td>
+          <% end %>
+        <tr>
+          <td></td>
+          <td><%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success btn-lg" %></td>
+        </tr>
+      </table>
+
+      <h3 class="mt-4">担当タスク一覧</h3>
+      <table class="table">
+        <tr>
+          <td>日付</td>
+          <td>タスク名</td>
+          <td>進捗状況</td>
+          <td></td>
+        </tr>
+        <% @user.charges.each do |charge|%>
+        <tr>
+          <td><%= charge.event.start_on %></td>
+          <td><%= charge.event.title %></td>
+          <td><%= charge.event.is_finished_i18n %></td>
+          <td><%= link_to "詳細", admin_event_path(charge.event), class: "btn btn-primary" %></td>
+        </tr>
+        <% end %>
+      </table>
     </div>
   </div>
 </div>

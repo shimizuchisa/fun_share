@@ -1,27 +1,33 @@
 <%= render 'layouts/admin_header' %>
-<h2>管理者ログイン</h2>
+<div class="container">
+  <h2>管理者ログイン</h2>
+  <div class="row">
+    <div class="col-md-10">
+    <%= form_with model: @admin, url: admin_session_path do |f| %>
+      <table>
+        <tr>
+          <td class="col-3"><%= f.label :email, "メールアドレス" %></td>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+        </tr>
+        <tr>
+          <td class="col-3"><%= f.label :password, "パスワード" %></td>
+          <td><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+        </tr>
+      </table>
+      <% if devise_mapping.rememberable? %>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
+      <% end %>
 
-<%= form_with model: @admin, url: admin_session_path do |f| %>
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="actions">
+        <%= f.submit "ログイン" %>
+      </div>
+    <% end %>
 
-  <div class="field">
-    <%= f.label :password, "パスワード" %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <%= render "admin/shared/links" %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
   </div>
-<% end %>
-
-<%= render "admin/shared/links" %>
+</div>

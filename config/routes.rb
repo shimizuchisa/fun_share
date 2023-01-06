@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'homes/top'
+  end
   # 管理者用
   # URL /admin/sign_in ...
   devise_for :admin, controllers: {
@@ -7,9 +10,10 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    root 'tasks#index'
+    root 'homes#top'
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :users, only: [:index, :show, :update]
+    resources :users, only: [:index, :show, :edit, :update]
+    resources :charges, only: [:index]
     resources :events, only: [:index, :show, :edit, :update] do
       resources :comments, only: [:index, :show, :update]
       resources :charges, only: [:index, :show, :update]
@@ -32,6 +36,8 @@ Rails.application.routes.draw do
     get 'users/mypage' => 'users#show'
     get 'users/mypage/edit' => 'users#edit'
     patch 'users/mypage' => 'users#update'
+    get 'users/unsubscribe' => 'users#unsubscribe'
+    patch 'users/withdraw' => 'users#withdraw'
     resources :events do
       resource :favorites, only: [:create, :destroy]
       resource :charges, only: [:create, :destroy]
