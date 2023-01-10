@@ -3,6 +3,9 @@ class Public::UsersController < ApplicationController
   before_action :set_current_user
 
   def show
+    @user = current_user
+    @charged_events = @user.charges.order(event_id: "ASC")
+    @favorited_events = @user.charges.order(event_id: "ASC")
   end
 
   def edit
