@@ -6,16 +6,18 @@
       <!--%= render partial: 'layouts/event_index', locals: {events: @events, path: admin_event_path(event) } %>-->
       <!--%= render partial: 'hoge', locals: { name: "山田", adress: "東京都渋谷区", age: 20 } %>-->
       <table class="table">
-        <tr>
-          <td>日付</td>
-          <td>タイトル</td>
-          <td>登録者</td>
-          <td>進捗状況</td>
-          <td>いいね</td>
-        </tr>
+        <thead class="table-light">
+          <tr>
+            <td>日付</td>
+            <td>タイトル</td>
+            <td>登録者</td>
+            <td>進捗状況</td>
+            <td>いいね</td>
+          </tr>
+        </thead>
         <% @events.each do |event| %>
         <tr>
-          <td><%= l event.start_time, format: :short %></td>
+          <td><%= l event.start_time, format: :day %></td>
           <td>
             <%= link_to(admin_event_path(event)) do %>
               <%= event.title %>
@@ -23,7 +25,8 @@
           </td>
           <td><%= event.user.last_name %><%= event.user.first_name %></td> <!--担当者に変更必要-->
           <td><%= event.is_finished_i18n %></td>
-          <td>❤︎<%= event.favorites.count %>件</td>
+
+          <td>︎<%= event.comments.count %>件</td>
         </tr>
         <% end %>
       </table>

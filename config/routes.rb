@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     resources :charges, only: [:index]
     resources :events, only: [:index, :show, :edit, :update] do
-      resources :comments, only: [:index, :show, :update]
+      resources :comments, only: [:index, :show, :update, :destroy]
       resources :charges, only: [:index, :show, :update]
     end
   end

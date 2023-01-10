@@ -4,9 +4,9 @@ class Admin::EventsController < ApplicationController
   def index
     if params[:user_id]
       @user = User.find_by(id: params[:user_id])
-      @events = @user.events
+      @events = @user.events.order(start_time: "ASC")
     else
-      @events = Event.all
+      @events = Event.all.order(start_time: "ASC")
     end
   end
 

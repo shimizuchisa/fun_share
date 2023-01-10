@@ -22,13 +22,11 @@
                 <%= user.last_name %><%= user.first_name %>
               <% end %>
             </td>
-            <td>
-              <% if user.is_deleted == false %>
-                有効
+            <td><% if user.is_deleted == false %>
+                <p>有効</p>
               <% else %>
-                無効
-              <% end %>
-            </td>
+                <p class="text-danger">無効</p>
+              <% end %></td>
           </tr>
           <% end %>
         </tbody>

@@ -17,7 +17,7 @@
               <li class="nav-item"><%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link" %></li>
               <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %></li>
             <% else %>
-              <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "ログイン", new_admin_session_path, class: "nav-link" %></li>
             <% end %>
           </ul>
         </div>

@@ -19,4 +19,8 @@ class User < ApplicationRecord
       # 例えば name を入力必須としているならば， user.name = "ゲスト" なども必要
     end
   end
+
+  def name_display
+    last_name + first_name
+  end
 end
