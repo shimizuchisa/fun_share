@@ -1,12 +1,10 @@
-
-
 <%= render 'layouts/admin_header' %>
 <div class="container">
   <h2>会員一覧</h2>
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-6">
       <table class="table">
-        <thead>
+        <thead class="table-light">
           <tr>
             <th>会員ID</th>
             <th>名前</th>
@@ -23,7 +21,7 @@
               <% end %>
             </td>
             <td><% if user.is_deleted == false %>
-                <p>有効</p>
+                <p class="text-primary">有効</p>
               <% else %>
                 <p class="text-danger">無効</p>
               <% end %></td>

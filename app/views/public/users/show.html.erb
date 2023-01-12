@@ -20,43 +20,51 @@
           <td><%= @user.events.count %>件 <%= link_to "一覧", events_path(user_id: current_user.id), class: "btn btn-primary" %></td>
         </tr>
       </table>
-      <h3>担当タスク一覧</h3>
+      <div>
+        <%= link_to "編集", users_mypage_edit_path, class: "btn btn-success col-3" %>
+      </div>
+      <h3 class="mt-5">担当タスク一覧</h3>
       <table class="table">
-        <tr>
-          <td>日付</td>
-          <td>タスク名</td>
-          <td>進捗状況</td>
-          <td></td>
-        </tr>
-
-        <% @chargeds.each do |charge| %>
+        <thead class="table-light">
+          <tr>
+            <td>日付</td>
+            <td>タスク名</td>
+            <td>進捗状況</td>
+          </tr>
+        </thead>
+        <% @charged_events.each do |charge| %>
         <tr>
           <td><%= charge.event.start_on %></td>
-          <td><%= charge.event.title %></td>
+          <td>
+            <%= link_to(event_path(charge.event)) do %>
+              <%= charge.event.title %></td>
+            <% end %>
           <td><%= charge.event.is_finished_i18n %></td>
-          <td><%= link_to "詳細", event_path(charge.event), class: "btn btn-primary" %></td>
         </tr>
         <% end %>
       </table>
-      <h3>ブックマークタスク一覧</h3>
+      <h3 class="mt-5">ブックマークタスク一覧</h3>
       <table class="table">
-        <tr>
-          <td>日付</td>
-          <td>タスク名</td>
-          <td>進捗状況</td>
-          <td></td>
-        </tr>
-        <% @user.favorites.each do |favorite|%>
+        <thead class="table-light">
+          <tr>
+            <td>日付</td>
+            <td>タスク名</td>
+            <td>進捗状況</td>
+          </tr>
+        </thead>
+        <% @favorited_events.each do |favorite|%>
         <tr>
           <td><%= favorite.event.start_on %></td>
-          <td><%= favorite.event.title %></td>
+          <td>
+            <%= link_to(event_path(favorite.event)) do %>
+              <%= favorite.event.title %>
+            <% end %>
+          </td>
           <td><%= favorite.event.is_finished_i18n %></td>
-          <td><%= link_to "詳細", event_path(favorite.event), class: "btn btn-primary" %></td>
         </tr>
         <% end %>
       </table>
     </div>
   </div>
-    <%= link_to "編集", users_mypage_edit_path, class: "btn btn-primary" %></div>
 </div>
 

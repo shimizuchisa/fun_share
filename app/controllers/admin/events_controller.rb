@@ -2,12 +2,19 @@ class Admin::EventsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    if params[:user_id]
-      @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:user_id])
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @events = @genre.events.order(start_time: "ASC")
+    elsif params[:user_id]
+      @user = User.find(params[:user_id])
       @events = @user.events.order(start_time: "ASC")
+    elsif params[:is_finished]
+      @events = Event.where(is_finished: params[:is_finished]).order(start_time: "ASC")
     else
       @events = Event.all.order(start_time: "ASC")
     end
+    @events = @events.where('title LIKE ?',"%#{params[:search]}%") if params[:search]
   end
 
   def show

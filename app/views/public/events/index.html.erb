@@ -1,15 +1,7 @@
 <%= render 'layouts/public_header' %>
 <div class="container">
-  <h2>タスク一覧</h2>
-    <h4>検索条件：
-    <% if params[:genre_id] %>
-      <span class="mt-3"><%= @genre.name %></span>
-    <% elsif params[:user_id] %>
-      <span class="mt-3"><%= @user.name_display %></span>
-    <% elsif params[:is_finished] %>
-      <span class="mt-3"><%= params[:is_finished] %></span>
-    <% end %>
-    </h4>
+  <%= render 'layouts/event_index_search' %>
+  <div class="search_box mb-4">
     <div class="row search col-4">
     <%= form_with url: events_path, method: :get do |f| %>
       <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), :prompt => "ジャンルを選択してください", class: "form-control" %>
@@ -28,7 +20,8 @@
       <%= f.submit "検索" %>
     <% end %>
     </div>
-
+  </div>
+  <h2>タスク一覧</h2>
   <div class="row">
     <div class="col-md-10">
       <table class="table">

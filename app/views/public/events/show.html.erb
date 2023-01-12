@@ -1,6 +1,5 @@
 <%= render 'layouts/public_header' %>
 <div class="container">
-  <h1>タスク詳細</h1>
   <div class="row">
     <div class="col-md-4">
       <div class="text-center">
@@ -13,6 +12,7 @@
     </div>
 
     <div class="col-md-7 offset-1">
+      <h1>タスク詳細</h1>
       <div class="row">
         <%= render 'layouts/event_show', event: @event %>
       </div>
@@ -30,7 +30,7 @@
           <% end %>
         </p>
       <% end %>
-      <% if @event.user == current_user %>
+      <% if @event.charged_by?(current_user) || current_user == @event.user %>
         <div class="row">
           <%= link_to "タスク編集", edit_event_path(@event), class: "btn btn-primary" %>
         </div>

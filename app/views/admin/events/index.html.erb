@@ -1,10 +1,29 @@
 <%= render 'layouts/admin_header' %>
 <div class="container">
+  <%= render 'layouts/event_index_search' %>
+  <div class="search_box mb-4">
+    <div class="row search col-4">
+    <%= form_with url: admin_events_path, method: :get do |f| %>
+      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), :prompt => "ジャンルを選択してください", class: "form-control" %>
+      <%= f.submit "検索", class: "ml-auto" %>
+    <% end %>
+    </div>
+    <div class="row search col-4">
+    <%= form_with url: admin_events_path, method: :get do |f| %>
+      <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name_display), :prompt => "タスク登録者を選択してください" %>
+      <%= f.submit "検索" %>
+    <% end %>
+    </div>
+    <div class="row search col-4">
+    <%= form_with url: admin_events_path, method: :get do |f| %>
+      <%= f.select :is_finished, Event.is_finisheds.keys.map {|k| [t("enum.event.is_finished.#{k}"), k]}, :prompt => "進捗状況を選択してください" %>
+      <%= f.submit "検索" %>
+    <% end %>
+    </div>
+  </div>
   <h2>タスク一覧</h2>
   <div class="row">
     <div class="col-md-10">
-      <!--%= render partial: 'layouts/event_index', locals: {events: @events, path: admin_event_path(event) } %>-->
-      <!--%= render partial: 'hoge', locals: { name: "山田", adress: "東京都渋谷区", age: 20 } %>-->
       <table class="table">
         <thead class="table-light">
           <tr>

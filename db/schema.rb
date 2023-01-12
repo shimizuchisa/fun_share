@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_28_050627) do
+ActiveRecord::Schema.define(version: 2023_01_11_042304) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2022_12_28_050627) do
     t.integer "event_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "event_start_time"
     t.index ["event_id"], name: "index_charges_on_event_id"
     t.index ["user_id"], name: "index_charges_on_user_id"
   end
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 2022_12_28_050627) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "event_start_time"
     t.index ["event_id"], name: "index_favorites_on_event_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
