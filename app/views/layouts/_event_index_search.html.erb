@@ -5,7 +5,7 @@
     <% elsif params[:user_id] %>
       <span class="mt-3"><%= @user.name_display %></span>
     <% elsif params[:is_finished] %>
-      <span class="mt-3"><%= params[:is_finished] %></span>
+      <span class="mt-3"><%= Event.is_finisheds_i18n[params[:is_finished]] %></span>
     <% end %>
     </h4>
   </div>
