@@ -1,43 +1,56 @@
 <%= render 'layouts/admin_header' %>
 <div class="container">
-  <h2>タスク詳細</h2>
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-4">
+      <div class="text-center">
+        <%= week_calendar events: @events do |date| %>
+          <div>
+            <%= date.day %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-7 offset-1">
+      <h2>タスク詳細</h2>
+      <div class="row">
         <%= render 'layouts/event_show', event: @event %>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-        <p>
-          <% if @event.favorites.exists? %>
-            ❤<%= @event.favorites.count %> いいね
-          <% else %>
-            ♡<%= @event.favorites.count %> いいね
-          <% end %>
-        </p>
+      <div class="row">
+        <div class="col-md-3">
+          <p>
+            <% if @event.favorites.exists? %>
+              ❤<%= @event.favorites.count %> いいね
+            <% else %>
+              ♡<%= @event.favorites.count %> いいね
+            <% end %>
+          </p>
+        </div>
+        <div class="col-md-3">
+          <%= link_to "編集する", edit_admin_event_path(@event), class: "btn btn-primary" %>
+        </div>
       </div>
-      <div class="col-md-3">
-        <%= link_to "編集する", edit_admin_event_path(@event), class: "btn btn-primary" %>
+      <div class="row mt-5">
+        <%= render 'layouts/charge_index', charges: @charges %>
       </div>
-    </div>
-    <div class="row mt-5">
-      <%= render 'layouts/charge_index', charges: @charges %>
-    </div>
-    <div class="row mt-5">
-      <h3>コメント一覧</h3>
-      <table class="table">
-          <tr>
-            <th>投稿者</th>
-            <th>コメント</th>
-            <th></th>
-          </tr>
+      <div class="row mt-5">
+        <h3>コメント一覧</h3>
+        <table class="table">
+          <thead class="table-light">
+            <tr>
+              <th>投稿者</th>
+              <th>コメント</th>
+              <th></th>
+            </tr>
+          </thead>
           <% @comments.each do |comment| %>
-          <tr>
-            <td><%= comment.user.last_name %><%= comment.user.first_name %></td>
-            <td><%= comment.comment %></td>
-            <td><%= link_to "削除", admin_event_comment_path(@event, comment), method: :delete %></td>
-          </tr>
+            <tr>
+              <td><%= comment.user.last_name %><%= comment.user.first_name %></td>
+              <td><%= comment.comment %></td>
+              <td><%= link_to "削除", admin_event_comment_path(@event, comment), method: :delete %></td>
+            </tr>
           <% end %>
         </table>
+      </div>
+    </div>
   </div>
 </div>

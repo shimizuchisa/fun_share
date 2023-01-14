@@ -25,13 +25,15 @@
   <div class="row">
     <div class="col-md-10">
       <table class="table">
-        <tr>
-          <td>日付</td>
-          <td>ジャンル</td>
-          <td>タイトル</td>
-          <td>登録者</td>
-          <td>進捗状況</td>
-        </tr>
+        <thead class="table-light">
+          <tr>
+            <td>日付</td>
+            <td>ジャンル</td>
+            <td>タイトル</td>
+            <td>登録者</td>
+            <td>進捗状況</td>
+          </tr>
+        </thead>
         <% @events.each do |event| %>
         <tr>
           <td><%= l event.start_time, format: :day %></td>
@@ -41,10 +43,11 @@
               <%= event.title %>
             <% end %>
           </td>
-          <td><%= event.user.last_name %><%= event.user.first_name %></td> <!--担当者に変更必要-->
+          <td><%= event.user.last_name %><%= event.user.first_name %></td>
           <td><%= event.is_finished_i18n %></td>
         </tr>
         <% end %>
       </table>
+    </div>
   </div>
 </div>

@@ -17,8 +17,7 @@
         </tr>
         <tr>
           <td>登録タスク</td>
-          <td><%= @user.events.count %>件</td>
-          <td><%= link_to "一覧", admin_events_path(user_id: @user.id), class: "btn btn-primary" %></td>
+          <td><%= @user.events.count %>件<%= link_to "一覧", admin_events_path(user_id: @user.id), class: "btn btn-primary" %></td>
         </tr>
         <tr>
           <td>会員ステータス</td>
@@ -27,11 +26,12 @@
           <% elsif @user.is_deleted == true %>
             <td>退会</td>
           <% end %>
-        <tr>
-          <td></td>
-          <td><%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success btn-lg" %></td>
         </tr>
       </table>
+      <div>
+        <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success col-3" %>
+      </div>
+        </tr>
 
       <h3 class="mt-4">担当タスク一覧</h3>
       <table class="table">
@@ -42,11 +42,11 @@
             <td>進捗状況</td>
           </tr>
         </thead>
-        <% @user.charges.each do |charge|%>
+        <% @user_charges.each do |charge|%>
           <tr>
             <td><%= charge.event.start_on %></td>
             <td>
-              <%= link_to(admin_event_path(charge.event) do %>
+              <%= link_to(admin_event_path(charge.event)) do %>
                 <%= charge.event.title %>
               <% end %>
             </td>

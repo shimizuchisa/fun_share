@@ -10,7 +10,13 @@
           <% events.each do |event| %>
             <%= link_to(event_path(event)) do %>
               <div>
-                <%= event.title %>
+                <% if current_user == event.user %>
+                  <span><i class="fas fa-pen" style="color: black;"></i></span><%= event.title %>
+                <% elsif event.charges.where(user_id: current_user.id) %>
+                  <span><i class="fas fa-flag" style="color: red;"></i></span><%= event.title %>
+                <% else %>
+                  <%= event.title %>
+                <% end %>
               </div>
             <% end %>
           <% end %>

@@ -13,14 +13,42 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
-              <li class="nav-item"><%= link_to "カレンダー", root_path, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "マイページ", users_mypage_path, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "タスク一覧", events_path, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "新規タスク", new_event_path, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
+              <li class="nav-item">
+                <%= link_to root_path, class: "nav-link" do %>
+                  <i class="fas fa-calendar"></i><span>カレンダー</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to users_mypage_path, class: "nav-link" do %>
+                  <i class="fas fa-user"></i><span>マイページ</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to events_path, class: "nav-link" do %>
+                  <i class="fas fa-tasks"></i><span>タスク一覧</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_event_path, class: "nav-link" do %>
+                  <i class="fas fa-pen"></i><span>新規タスク登録</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: "nav-link" do %>
+                  <i class="fas fa-sign-out-alt"></i><span>ログアウト</span>
+                <% end %>
+              </li>
             <% else %>
-              <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
-              <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+              <li class="nav-item">
+                <%= link_to new_user_registration_path, class: "nav-link" do %>
+                  <i class="fas fa-user-plus"></i><span>新規登録</span>
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_session_path, class: "nav-link" do %>
+                  <i class="fas fa-sign-in-alt"></i><span>ログイン</span>
+                <% end %>
+              </li>
             <% end %>
           </ul>
         </div>

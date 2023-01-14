@@ -28,24 +28,26 @@
         <thead class="table-light">
           <tr>
             <td>日付</td>
+            <td>ジャンル</td>
             <td>タイトル</td>
             <td>登録者</td>
             <td>進捗状況</td>
-            <td>いいね</td>
-          </tr>
         </thead>
         <% @events.each do |event| %>
         <tr>
           <td><%= l event.start_time, format: :day %></td>
+          <td><%= event.genre.name %></td>
           <td>
             <%= link_to(admin_event_path(event)) do %>
               <%= event.title %>
             <% end %>
           </td>
-          <td><%= event.user.last_name %><%= event.user.first_name %></td> <!--担当者に変更必要-->
+          <td>
+            <%= link_to(admin_user_path(event.user)) do %>
+              <%= event.user.last_name %><%= event.user.first_name %>
+            <% end %>
+          </td>
           <td><%= event.is_finished_i18n %></td>
-
-          <td>︎<%= event.comments.count %>件</td>
         </tr>
         <% end %>
       </table>

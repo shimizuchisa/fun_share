@@ -18,6 +18,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def show
+    @events = Event.all
     @event = Event.find(params[:id])
     @charges = @event.charges
     @comments = @event.comments
