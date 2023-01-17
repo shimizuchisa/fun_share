@@ -3,6 +3,7 @@ class Public::HomesController < ApplicationController
 
   def top
     @events = Event.all
+    @user = current_user
   end
 
 end

@@ -15,4 +15,18 @@ class Admin::CommentsController < ApplicationController
     end
   end
 
+  def event_comments_destroy_all
+    @event = Event.find(id: params[:event_id])
+    @comments = @event.comments
+    @comments.destroy_all
+    redirect_to admin_event_path(@event)
+  end
+
+  def user_comments_destroy_all
+    @user = User.find(id: params[:user_id])
+    @comments = @user.comments
+    @comments.destroy_all
+    redirect_to admin_user_path(@user)
+  end
+
 end

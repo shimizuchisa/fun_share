@@ -58,3 +58,4 @@ gem 'devise'
 gem 'pry-rails'
 gem "enum_help"
 gem "simple_calendar", "~> 2.0"
+gem 'kaminari','~> 1.2.1'

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'homes#top'
+    delete 'comments/event_comments_destroy_all' => 'comments#event_comments_destroy_all'
+    delete 'comments/user_comments_destroy_all' => 'comments#user_comments_destroy_all'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :users, only: [:index, :show, :edit, :update]
     resources :charges, only: [:index]

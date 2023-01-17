@@ -1,6 +1,6 @@
 <%= render 'layouts/public_header' %>
 <div class="container">
-  <h1>カレンダー</h1>
+  <h1>タスクカレンダー</h1>
   <div class="row">
     <div class="col-10 text-center">
       <%= month_calendar events: @events do |date, events| %>
@@ -10,9 +10,11 @@
           <% events.each do |event| %>
             <%= link_to(event_path(event)) do %>
               <div>
-                <% if current_user == event.user %>
+                <!--ログインユーザーがタスク登録者か確認-->
+                <% if @user == event.user %>
                   <span><i class="fas fa-pen" style="color: black;"></i></span><%= event.title %>
-                <% elsif event.charges.where(user_id: current_user.id) %>
+                <!--ログインユーザーがタスク担当者か確認-->
+                <% elsif event.charges.where(user_id: @user.id).exists? %>
                   <span><i class="fas fa-flag" style="color: red;"></i></span><%= event.title %>
                 <% else %>
                   <%= event.title %>
