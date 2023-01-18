@@ -33,26 +33,11 @@
         <%= render 'layouts/charge_index', charges: @charges %>
       </div>
       <div class="row mt-5">
-        <h3>コメント一覧</h3>
-        <%= link_to "すべてのコメントを削除"%>
-        <table class="table">
-          <thead class="table-light">
-            <tr>
-              <th>投稿者</th>
-              <th>コメント</th>
-              <th></th>
-            </tr>
-          </thead>
-          <% @comments.each do |comment| %>
-            <tr>
-              <td><%= comment.user.last_name %><%= comment.user.first_name %></td>
-              <td><%= comment.comment %></td>
-              <td><%= link_to "削除", admin_event_comment_path(@event, comment), method: :delete, class: "btn btn-danger" %></td>
-            </tr>
-          <% end %>
-        </table>
-        <div class="w-100">
-          <%= paginate @comments %>
+        <div class="row w-50">
+          <%= link_to "すべてのコメントを削除", admin_root_path, class: "btn btn-danger" %>
+        </div>
+        <div class="row">
+          <%= render 'layouts/comments_index', comments: @comments %>
         </div>
       </div>
     </div>
