@@ -10,12 +10,14 @@
           <% events.each do |event| %>
             <%= link_to(event_path(event)) do %>
               <div>
+                <% if @user == event.user && event.charges.where(user_id: @user.id).exists? %>
+                  <span><i class="fas fa-pen" style="color: black;"></i></span><%= event.title %><span><i class="fas fa-flag" style="color: red;"></i></span>
                 <!--ログインユーザーがタスク登録者か確認-->
-                <% if @user == event.user %>
+                <% elsif @user == event.user %>
                   <span><i class="fas fa-pen" style="color: black;"></i></span><%= event.title %>
                 <!--ログインユーザーがタスク担当者か確認-->
                 <% elsif event.charges.where(user_id: @user.id).exists? %>
-                  <span><i class="fas fa-flag" style="color: red;"></i></span><%= event.title %>
+                  <%= event.title %><span><i class="fas fa-flag" style="color: red;"></i></span>
                 <% else %>
                   <%= event.title %>
                 <% end %>

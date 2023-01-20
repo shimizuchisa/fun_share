@@ -2,7 +2,7 @@
 <div class="container">
   <h1>カレンダー</h1>
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-10 text-center">
       <%= month_calendar events: @events do |date, events| %>
       <div>
         <%= date.day %>
@@ -10,7 +10,13 @@
         <% events.each do |event| %>
           <%= link_to(admin_event_path(event)) do %>
             <div>
-              <%= event.title %>
+              <% if event.charges.exists? && (event.is_finished == "untouched") %>
+                <p class="text-warning"><%= event.title %></p>
+              <% elsif event.charges.exists? %>
+                <p><%= event.title %></p>
+              <% else %>
+                <p class="text-danger"><span><i class="fas fa-exclamation-triangle"></i></span><%= event.title %></p>
+              <% end %>
             </div>
           <% end %>
         <% end %>
