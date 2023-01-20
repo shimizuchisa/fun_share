@@ -21,39 +21,5 @@
     <% end %>
     </div>
   </div>
-  <h2>タスク一覧</h2>
-  <div class="row">
-    <div class="col-md-10">
-      <table class="table">
-        <thead class="table-light">
-          <tr>
-            <td>日付</td>
-            <td>ジャンル</td>
-            <td>タイトル</td>
-            <td>登録者</td>
-            <td>進捗状況</td>
-        </thead>
-        <% @events.each do |event| %>
-        <tr>
-          <td><%= l event.start_time, format: :day %></td>
-          <td><%= event.genre.name %></td>
-          <td>
-            <%= link_to(admin_event_path(event)) do %>
-              <%= event.title %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to(admin_user_path(event.user)) do %>
-              <%= event.user.last_name %><%= event.user.first_name %>
-            <% end %>
-          </td>
-          <td><%= event.is_finished_i18n %></td>
-        </tr>
-        <% end %>
-      </table>
-      <div class="w-100">
-        <%= paginate @events %> <!--cssでjustify-content: center;-->
-      </div>
-    </div>
-  </div>
+  <%= render 'layouts/event_index', {user: @user, events: @events} %>
 </div>

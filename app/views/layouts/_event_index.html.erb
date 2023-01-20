@@ -1,0 +1,45 @@
+<h2>タスク一覧</h2>
+  <div class="row">
+    <div class="col-md-10">
+      <table class="table">
+        <thead class="table-light">
+          <tr>
+            <td>日付</td>
+            <td>ジャンル</td>
+            <td>タイトル</td>
+            <td>登録者</td>
+            <td>進捗状況</td>
+        </thead>
+        <% events.each do |event| %>
+        <tr>
+          <td><%= l event.start_time, format: :day %></td>
+          <td><%= event.genre.name %></td>
+          <td>
+            <% if user == current_user %>
+              <%= link_to(event_path(event)) do %>
+                <%= event.title %>
+              <% end %>
+            <% else %>
+              <%= link_to(admin_event_path(event)) do %>
+                <%= event.title %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% if user == current_user %>
+              <%= event.user.name_display %>
+            <% else %>
+              <%= link_to(admin_user_path(event.user)) do %>
+                <%= event.user.name_display %>
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= event.is_finished_i18n %></td>
+        </tr>
+        <% end %>
+      </table>
+      <div class="w-100">
+        <%= paginate events %> <!--cssでjustify-content: center;-->
+      </div>
+    </div>
+  </div>

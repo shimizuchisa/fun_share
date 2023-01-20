@@ -35,7 +35,22 @@
         </div>
       <% end %>
       <div class="row mt-4">
-        <%= render 'layouts/charge_index', charges: @charges %>
+        <h3 class="w-100">タスク担当者</h3>
+        <% if @event.charges %>
+          <table>
+            <% @event.charges.each do |charge| %>
+            <tr>
+              <td><%= charge.user.name_display %></td>
+            </tr>
+            <% end %>
+          </table>
+        <% else %>
+          <table>
+            <tr>
+              <td>担当者がいません</td>
+            </tr>
+          </table>
+        <% end %>
       </div>
       <% if @event.charged_by?(current_user) %>
         <div class="row">

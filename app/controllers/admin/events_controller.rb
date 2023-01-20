@@ -20,7 +20,7 @@ class Admin::EventsController < ApplicationController
   def show
     @events = Event.all
     @event = Event.find(params[:id])
-    @charges = @event.charges
+    @charges = @event.charges.page(params[:page])
     @comments = @event.comments.page(params[:page])
   end
 

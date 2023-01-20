@@ -1,0 +1,27 @@
+      <h3 class="mt-5">ブックマークタスク一覧</h3>
+      <table class="table">
+        <thead class="table-light">
+          <tr>
+            <td>日付</td>
+            <td>タスク名</td>
+            <td>進捗状況</td>
+          </tr>
+        </thead>
+        <% favorites.each do |favorite|%>
+        <tr>
+          <td><%= favorite.event.start_on %></td>
+          <td>
+            <% if current_user == @user %>
+              <%= link_to(event_path(favorite.event)) do %>
+                <%= favorite.event.title %>
+              <% end %>
+            <% else %>
+              <%= link_to(admin_event_path(favorite.event)) do %>
+                <%= favorite.event.title %>
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= favorite.event.is_finished_i18n %></td>
+        </tr>
+        <% end %>
+      </table>

@@ -1,6 +1,11 @@
 class Public::FavoritesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @user = current_user
+    @favorites = @user.favorites.page(params[:page]).order(event_start_time: "ASC")
+  end
+
   def create
     event = Event.find(params[:event_id])
     favorite = current_user.favorites.new(event_id: event.id)

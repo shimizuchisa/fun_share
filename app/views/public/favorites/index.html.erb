@@ -1,0 +1,12 @@
+<%= render 'layouts/public_header' %>
+<div class="container">
+  <h2>会員情報詳細</h2>
+  <div class="row">
+    <div class="col-md-10">
+      <%= render 'layouts/favorites_index', favorites: @favorites %>
+      <div class="w-100">
+        <%= paginate @favorites %>
+      </div>
+    </div>
+  </div>
+</div>

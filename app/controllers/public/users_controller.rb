@@ -4,8 +4,6 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = current_user
-    @user_charges = @user.charges.order(event_start_time: "ASC")
-    @user_favorites = @user.favorites.order(event_start_time: "ASC")
   end
 
   def edit

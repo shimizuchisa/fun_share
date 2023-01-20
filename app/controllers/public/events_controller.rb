@@ -34,7 +34,7 @@ class Public::EventsController < ApplicationController
     @events = Event.all
     @event = Event.find(params[:id])
     @charge = Charge.new
-    @charges = @event.charges
+    @charges = @event.charges.page(params[:page])
     @comment = Comment.new
     @comments = @event.comments.page(params[:page])
     @favorite = Favorite.new

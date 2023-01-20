@@ -1,14 +1,29 @@
-<table class="table">
-  <h3>担当者</h3>
-  <% if charges.exists? %>
-    <% charges.each do |charge| %>
-      <tr>
-        <td><%= charge.user.last_name %><%= charge.user.first_name %></td>
-      </tr>
-    <% end %>
-  <% else %>
-    <tr>
-      <td>担当者が決まっていません</td>
-    </tr>
-  <% end %>
-</table>
+<h3 class="mt-5">担当タスク一覧</h3>
+      <table class="table">
+        <thead class="table-light">
+          <tr>
+            <td>日付</td>
+            <td>タスク名</td>
+            <td>進捗状況</td>
+          </tr>
+        </thead>
+        <% charges.each do |charge| %>
+        <tr>
+          <td><%= charge.event.start_on %></td>
+          <td>
+            <% if current_user == @user %>
+              <%= link_to(event_path(charge.event)) do %>
+                <%= charge.event.title %></td>
+              <% end %>
+            <% else %>
+              <%= link_to admin_event_path(charge.event) do %>
+                <%= charge.event.title %></td>
+              <% end %>
+            <% end %>
+          <td><%= charge.event.is_finished_i18n %></td>
+        </tr>
+        <% end %>
+      </table>
+      <div class="w-100">
+        <%= paginate charges %>
+      </div>

@@ -23,47 +23,13 @@
       <div>
         <%= link_to "編集", users_mypage_edit_path, class: "btn btn-success col-3" %>
       </div>
-      <h3 class="mt-5">担当タスク一覧</h3>
-      <table class="table">
-        <thead class="table-light">
-          <tr>
-            <td>日付</td>
-            <td>タスク名</td>
-            <td>進捗状況</td>
-          </tr>
-        </thead>
-        <% @user_charges.each do |charge| %>
-        <tr>
-          <td><%= charge.event.start_on %></td>
-          <td>
-            <%= link_to(event_path(charge.event)) do %>
-              <%= charge.event.title %></td>
-            <% end %>
-          <td><%= charge.event.is_finished_i18n %></td>
-        </tr>
-        <% end %>
-      </table>
-      <h3 class="mt-5">ブックマークタスク一覧</h3>
-      <table class="table">
-        <thead class="table-light">
-          <tr>
-            <td>日付</td>
-            <td>タスク名</td>
-            <td>進捗状況</td>
-          </tr>
-        </thead>
-        <% @user_favorites.each do |favorite|%>
-        <tr>
-          <td><%= favorite.event.start_on %></td>
-          <td>
-            <%= link_to(event_path(favorite.event)) do %>
-              <%= favorite.event.title %>
-            <% end %>
-          </td>
-          <td><%= favorite.event.is_finished_i18n %></td>
-        </tr>
-        <% end %>
-      </table>
+
+      <div>
+        <%= link_to "担当タスク一覧", charges_path, class: "btn btn-primary col-3" %>
+      </div>
+      <div>
+        <%= link_to "ブックマークタスク一覧", favorites_path, class: "btn btn-primary col-3" %>
+      </div>
     </div>
   </div>
 </div>

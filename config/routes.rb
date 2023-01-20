@@ -18,8 +18,10 @@ Rails.application.routes.draw do
     resources :charges, only: [:index]
     resources :events, only: [:index, :show, :edit, :update] do
       resources :comments, only: [:index, :show, :update, :destroy]
-      resources :charges, only: [:index, :show, :update]
+      resources :charges, only: [:show, :update, :destroy]
     end
+    resources :charges, only: [:index]
+    resources :favorites, only: [:index]
   end
 
   # 会員用
@@ -47,6 +49,8 @@ Rails.application.routes.draw do
       # 1人のユーザーは1つのタスクに対して1担当するため
       resources :comments, only: [:create]
     end
+    resources :charges, only: [:index]
+    resources :favorites, only: [:index]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

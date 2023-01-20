@@ -11,6 +11,11 @@ class Public::ChargesController < ApplicationController
     redirect_to event_path(event)
   end
 
+  def index
+    @user = current_user
+    @charges = @user.charges.page(params[:page]).order(event_start_time: "ASC")
+  end
+
   def destroy
     event = Event.find(params[:event_id])
     charge = current_user.charges.find_by(event_id: event.id)
