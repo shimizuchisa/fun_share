@@ -1,16 +1,28 @@
-<h3 class="mt-3">コメント一覧</h3>
+<div class="row mb-4">
+  <h3 class="w-100">コメント一覧</h3>
   <table class="table">
     <tr>
+      <th>日付</th>
       <th>投稿者</th>
       <th>コメント</th>
+      <% if admin_signed_in? %>
+        <th></th>
+      <% end %>
     </tr>
     <% comments.each do |comment| %>
     <tr>
-      <td><%= comment.user.last_name %><%= comment.user.first_name %></td>
+      <td><%= l comment.created_at, format: :day %></td>
+      <td><%= comment.user.name_display %></td>
       <td><%= comment.comment %></td>
+      <% if admin_signed_in? %>
+        <td>
+          <%= link_to "削除", admin_event_comment_path(comment.event, comment), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+        </td>
+      <% end %>
     </tr>
     <% end %>
   </table>
   <div class="w-100">
     <%= paginate comments %>
   </div>
+</div>

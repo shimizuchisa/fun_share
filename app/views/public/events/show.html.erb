@@ -1,7 +1,7 @@
 <%= render 'layouts/public_header' %>
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
       <div class="text-center">
         <%= week_calendar events: @events do |date| %>
           <div>
@@ -10,7 +10,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-7 offset-1">
+    <div class="col-md-4 offset-md-1">
       <h1>タスク詳細</h1>
       <div class="row">
         <%= render 'layouts/event_show', event: @event %>
@@ -18,13 +18,13 @@
 
       <% if @event.favorited_by?(current_user) %>
         <p>
-          <%= link_to event_favorites_path(@event), method: :delete do %>
+          <%= link_to event_favorites_path(@event), method: :delete, class: "btn btn-outline-info" do %>
             ❤<%= @event.favorites.count %> いいね
           <% end %>
         </p>
       <% else %>
         <p>
-          <%= link_to event_favorites_path(@event), method: :post do %>
+          <%= link_to event_favorites_path(@event), method: :post, class: "btn btn-outline-info" do %>
             ♡<%= @event.favorites.count %> いいね
           <% end %>
         </p>
@@ -34,24 +34,11 @@
           <%= link_to "タスク編集", edit_event_path(@event), class: "btn btn-primary" %>
         </div>
       <% end %>
-      <div class="row mt-4">
-        <h3 class="w-100">タスク担当者</h3>
-        <% if @event.charges %>
-          <table>
-            <% @event.charges.each do |charge| %>
-            <tr>
-              <td><%= charge.user.name_display %></td>
-            </tr>
-            <% end %>
-          </table>
-        <% else %>
-          <table>
-            <tr>
-              <td>担当者がいません</td>
-            </tr>
-          </table>
-        <% end %>
-      </div>
+    </div>
+
+    <div class="col-md-4 offset-md-1">
+      <%= render 'layouts/event_charger', event: @event %>
+
       <% if @event.charged_by?(current_user) %>
         <div class="row">
           <%= link_to event_charges_path(@event), method: :delete do %>

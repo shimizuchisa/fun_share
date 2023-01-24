@@ -28,7 +28,7 @@
           <% end %>
         </tr>
       </table>
-      
+
       <div>
         <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success col-3" %>
       </div>
@@ -38,31 +38,10 @@
       <div>
         <%= link_to "担当タスク一覧", admin_charges_path(user_id: @user.id), class: "btn btn-success col-3" %>
       </div>
-      
+
       <h3 class="mt-4">投稿コメント一覧</h3>
-      <%= link_to "すべてのコメントを削除", class: "btn btn-danger btn-lg" %>
-      <table class="table">
-        <thead class="table-light">
-          <tr>
-            <td>タスク名</td>
-            <td>コメント</td>
-            <td></td>
-          </tr>
-        </thead>
-        <% @user.comments.each do |comment|%>
-          <tr>
-            <td>
-              <%= link_to admin_event_path(comment.event) do %>
-                <%= comment.event.title %>
-              <% end %>
-            </td>
-            <td>
-              <%= comment.comment %>
-            </td>
-            <td><%= link_to "削除", admin_event_comment_path(comment.event, comment), method: :delete, class: "btn btn-danger" %></td>
-          </tr>
-        <% end %>
-      </table>
+      <%= link_to "すべてのコメントを削除", admin_user_comments_destroy_all_path(@user, user_id: @user.id) , method: :delete, class: "btn btn-danger btn-lg" %>
+      <%= render 'layouts/comments_index', comments: @comments %>
     </div>
   </div>
 </div>

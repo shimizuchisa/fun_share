@@ -15,23 +15,23 @@
           <td><%= l event.start_time, format: :day %></td>
           <td><%= event.genre.name %></td>
           <td>
-            <% if user == current_user %>
-              <%= link_to(event_path(event)) do %>
+            <% if admin_signed_in? %>
+              <%= link_to(admin_event_path(event)) do %>
                 <%= event.title %>
               <% end %>
             <% else %>
-              <%= link_to(admin_event_path(event)) do %>
+              <%= link_to(event_path(event)) do %>
                 <%= event.title %>
               <% end %>
             <% end %>
           </td>
           <td>
-            <% if user == current_user %>
-              <%= event.user.name_display %>
-            <% else %>
+            <% if admin_signed_in? %>
               <%= link_to(admin_user_path(event.user)) do %>
                 <%= event.user.name_display %>
               <% end %>
+            <% else %>
+              <%= event.user.name_display %>
             <% end %>
           </td>
           <td><%= event.is_finished_i18n %></td>

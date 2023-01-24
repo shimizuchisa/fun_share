@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_11_042304) do
+ActiveRecord::Schema.define(version: 2023_01_21_113533) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -54,7 +54,6 @@ ActiveRecord::Schema.define(version: 2023_01_11_042304) do
     t.datetime "end_time", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "start_on"
     t.index ["genre_id"], name: "index_events_on_genre_id"
     t.index ["user_id"], name: "index_events_on_user_id"
   end

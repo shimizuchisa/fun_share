@@ -11,14 +11,15 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'homes#top'
-    delete 'comments/event_comments_destroy_all' => 'comments#event_comments_destroy_all'
-    delete 'comments/user_comments_destroy_all' => 'comments#user_comments_destroy_all'
     resources :genres, only: [:index, :create, :edit, :update]
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update] do
+      delete 'comments/destroy_all' => 'comments#user_destroy_all'
+    end
     resources :charges, only: [:index]
     resources :events, only: [:index, :show, :edit, :update] do
       resources :comments, only: [:index, :show, :update, :destroy]
       resources :charges, only: [:show, :update, :destroy]
+      delete 'comments/destroy_all' => 'comments#event_destroy_all'
     end
     resources :charges, only: [:index]
     resources :favorites, only: [:index]

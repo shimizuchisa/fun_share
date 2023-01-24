@@ -8,6 +8,7 @@ class Admin::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user_charges = @user.charges.order(event_start_time: "ASC")
+    @comments = @user.comments.page(params[:page]).order(created_at: "ASC")
   end
 
   def edit

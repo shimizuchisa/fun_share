@@ -1,5 +1,6 @@
 class Public::EventsController < ApplicationController
   before_action :authenticate_user!
+  before_action :setup_datetime, only: :create
 
   def index
     @user = current_user
@@ -24,7 +25,7 @@ class Public::EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = Event.new(event_params.merge(start_time: @start_time, end_time: @end_time))
     @event.user_id = current_user.id
     @event.save
     redirect_to event_path(@event)
@@ -53,6 +54,12 @@ class Public::EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:genre_id, :title, :body, :start_on, :start_time, :end_time, :is_finished)
+    params.require(:event).permit(:genre_id, :title, :body, :start_time, :end_time, :is_finished)
+  end
+
+  def setup_datetime
+    datetime = DateTime.parse(params["event"]["start_on"])
+    @start_time = datetime.change(hour: params["event"]["start_time(4i)"].to_i, min: params["event"]["start_time(5i)"].to_i)
+    @end_time = datetime.change(hour: params["event"]["end_time(4i)"].to_i, min: params["event"]["end_time(5i)"].to_i)
   end
 end

@@ -13,7 +13,7 @@
         </tr>
         <tr>
           <td>日付</td>
-          <td><%= event.start_on %></td>
+          <td><%= event.start_time.to_date %></td>
         </tr>
         <tr>
           <td>開始時間</td>
@@ -25,12 +25,16 @@
         </tr>
         <tr>
           <td>登録者</td>
-          <td><%= event.user.last_name %> <%= event.user.first_name %></td>
+          <% if admin_signed_in? %>
+            <td>
+              <%= link_to(admin_user_path(event.user)) do %>
+                <%= event.user.name_display %>
+              <% end %>
+            </td>
+          <% else %>
+            <td><%= event.user.name_display %></td>
+          <% end %>
         </tr>
-        <!--<tr>-->
-          <!--<td>担当者</td>-->
-          <!--<td>%= event.user.last_name %> %= @event.user.first_name %></td><!--担当者に変更必要-->
-        <!--</tr>-->
         <tr>
           <td>進捗状況</td>
           <td><%= event.is_finished_i18n %></td>

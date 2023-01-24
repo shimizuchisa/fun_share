@@ -1,7 +1,7 @@
 <%= render 'layouts/admin_header' %>
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
       <div class="text-center">
         <%= week_calendar events: @events do |date| %>
           <div>
@@ -10,35 +10,27 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-7 offset-1">
+    <div class="col-md-5">
       <h2>タスク詳細</h2>
       <div class="row">
         <%= render 'layouts/event_show', event: @event %>
       </div>
-      <div class="row">
-        <div class="col-md-3">
-          <p>
-            <% if @event.favorites.exists? %>
-              ❤<%= @event.favorites.count %> いいね
-            <% else %>
-              ♡<%= @event.favorites.count %> いいね
-            <% end %>
-          </p>
-        </div>
-        <div class="col-md-3">
-          <%= link_to "編集する", edit_admin_event_path(@event), class: "btn btn-primary" %>
-        </div>
+      <%= link_to "編集する", edit_admin_event_path(@event), class: "btn btn-primary" %>
+      <div class="row mt-4">
+        <p>
+          <% if @event.favorites.exists? %>
+            <btn class="btn btn-outline-info">❤<%= @event.favorites.count %> いいね</btn>
+          <% else %>
+            <btn class="btn btn-outline-info">♡<%= @event.favorites.count %> いいね</btn>
+          <% end %>
+        </p>
       </div>
-      <div class="row mt-5">
-        <%= render 'layouts/charge_index', charges: @charges %>
-      </div>
-      <div class="row mt-5">
-        <div class="row w-50">
-          <%= link_to "すべてのコメントを削除", admin_root_path, class: "btn btn-danger" %>
-        </div>
-        <div class="row">
-          <%= render 'layouts/comments_index', comments: @comments %>
-        </div>
+    </div>
+    <div class="col-md-4 offset-md-1">
+      <%= render 'layouts/event_charger', event: @event %>
+      <%= render 'layouts/comments_index', comments: @comments %>
+      <div class="row w-50">
+        <%= link_to "全コメント削除", admin_root_path, class: "btn btn-danger" %>
       </div>
     </div>
   </div>
