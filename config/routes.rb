@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     root 'homes#top'
     resources :genres, only: [:index, :create, :edit, :update]
     resources :users, only: [:index, :show, :edit, :update] do
+      resources :comments, only: [:index]
       delete 'comments/destroy_all' => 'comments#user_destroy_all'
     end
     resources :charges, only: [:index]

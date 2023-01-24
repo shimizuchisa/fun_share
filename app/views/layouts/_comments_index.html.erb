@@ -1,5 +1,4 @@
-<div class="row mb-4">
-  <h3 class="w-100">コメント一覧</h3>
+
   <table class="table">
     <tr>
       <th>日付</th>
@@ -16,7 +15,7 @@
       <td><%= comment.comment %></td>
       <% if admin_signed_in? %>
         <td>
-          <%= link_to "削除", admin_event_comment_path(comment.event, comment), method: :delete, class: "btn btn-outline-danger btn-sm" %>
+          <%= link_to "削除", admin_event_comment_path(comment.event, comment, event_id: comment.event.id, comment_id: comment.id), method: :delete, data: { confirm: '削除しますか？' }, class: "btn btn-outline-danger btn-sm" %>
         </td>
       <% end %>
     </tr>
@@ -25,4 +24,3 @@
   <div class="w-100">
     <%= paginate comments %>
   </div>
-</div>

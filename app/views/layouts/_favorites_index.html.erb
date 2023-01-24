@@ -3,20 +3,22 @@
         <thead class="table-light">
           <tr>
             <td>日付</td>
+            <td>ジャンル</td>
             <td>タスク名</td>
             <td>進捗状況</td>
           </tr>
         </thead>
         <% favorites.each do |favorite|%>
         <tr>
-          <td><%= favorite.event.start_on %></td>
+          <td><%= l favorite.event.start_time, format: :day %></td>
+          <td><%= favorite.event.genre.name %></td>
           <td>
-            <% if current_user == @user %>
-              <%= link_to(event_path(favorite.event)) do %>
+            <% if admin_signed_in? %>
+              <%= link_to(admin_event_path(favorite.event)) do %>
                 <%= favorite.event.title %>
               <% end %>
-            <% else %>
-              <%= link_to(admin_event_path(favorite.event)) do %>
+            <% elsif current_user == @user %>
+              <%= link_to(event_path(favorite.event)) do %>
                 <%= favorite.event.title %>
               <% end %>
             <% end %>

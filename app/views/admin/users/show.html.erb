@@ -30,19 +30,17 @@
       </table>
 
       <div>
-        <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success col-3" %>
+        <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success" %>
       </div>
       <div>
-        <%= link_to "登録タスク一覧", admin_charges_path(user_id: @user.id), class: "btn btn-success col-3" %>
+        <%= link_to "登録タスク一覧", admin_charges_path(user_id: @user.id), class: "btn btn-outline-primary" %>
       </div>
       <div>
-        <%= link_to "担当タスク一覧", admin_charges_path(user_id: @user.id), class: "btn btn-success col-3" %>
+        <%= link_to "担当タスク一覧", admin_charges_path(user_id: @user.id), class: "btn btn-outline-info" %>
       </div>
-
-      <h3 class="mt-4">投稿コメント一覧</h3>
-      <%= link_to "すべてのコメントを削除", admin_user_comments_destroy_all_path(@user, user_id: @user.id) , method: :delete, class: "btn btn-danger btn-lg" %>
-      <%= render 'layouts/comments_index', comments: @comments %>
+      <div>
+        <%= link_to "投稿コメント一覧", admin_user_comments_path(user_id: @user.id), class: "btn btn-outline-info" %>
+      </div>
     </div>
   </div>
 </div>
-

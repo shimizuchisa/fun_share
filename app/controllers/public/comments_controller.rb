@@ -2,14 +2,14 @@ class Public::CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @event = Event.find(params[:event_id])
+    @event = Event.find_by(id: params[:event_id])
     @comment = Comment.new(comment_params)
     @comment.user_id =current_user.id
     @comment.event_id =@event.id
     if @comment.save
       redirect_to event_path(@event)
     else
-      render event_path(@event)
+      render root_path(@event)
     end
   end
 

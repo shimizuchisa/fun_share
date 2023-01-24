@@ -2,17 +2,16 @@ class Admin::CommentsController < ApplicationController
   before_action :authenticate_admin!
   !
   def index
-    @comments = Comment.all
+    @user = User.find_by(id: params[:user_id])
+    @comments = @user.comments.page(params[:page])
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    @event = Event.find(params[:event_id])
-    if @comment.delete
-      redirect_to admin_event_path(@event)
-    else
-      render admin_event_path(@event)
-    end
+    # １コメント削除したら、イベント詳細に戻る
+    @event = Event.find_by(id: params[:event_id])
+    @comment = @event.comments.find_by(id: params[:comment_id])
+    @comment.destroy
+    redirect_to admin_event_path(@event)
   end
 
   def event_destroy_all
