@@ -3,13 +3,11 @@ class Public::CommentsController < ApplicationController
 
   def create
     @event = Event.find_by(id: params[:event_id])
-    @comment = Comment.new(comment_params)
+    @comment = @event.comments.new(comment_params)
     @comment.user_id =current_user.id
     @comment.event_id =@event.id
     if @comment.save
       redirect_to event_path(@event)
-    else
-      render root_path(@event)
     end
   end
 

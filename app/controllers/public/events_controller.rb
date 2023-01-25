@@ -36,9 +36,9 @@ class Public::EventsController < ApplicationController
     @event = Event.find(params[:id])
     @charge = Charge.new
     @charges = @event.charges.page(params[:page])
-    @comment = Comment.new
     @comments = @event.comments.page(params[:page])
     @favorite = Favorite.new
+
   end
 
   def edit
