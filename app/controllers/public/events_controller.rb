@@ -1,6 +1,6 @@
 class Public::EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :setup_datetime, only: :create
+  before_action :setup_datetime, only: [:create, :update]
 
   def index
     @user = current_user
@@ -19,16 +19,20 @@ class Public::EventsController < ApplicationController
   end
 
   def new
-    # @task = Task.new
     @event = Event.new
-    # render plain: render_to_string(partial: 'form_new', layout: false, locals: { event: @event })
   end
 
   def create
     @event = Event.new(event_params.merge(start_time: @start_time, end_time: @end_time))
+   # @event = Event.new(event_params)
     @event.user_id = current_user.id
-    @event.save
-    redirect_to event_path(@event)
+    if @event.save
+      redirect_to event_path(@event)
+      flash[:notice] = "タスクを登録しました"
+    else
+      @event = Event.new
+      render :new
+    end
   end
 
   def show
@@ -37,6 +41,7 @@ class Public::EventsController < ApplicationController
     @charge = Charge.new
     @charges = @event.charges.page(params[:page])
     @comments = @event.comments.page(params[:page])
+    @comment = Comment.new
     @favorite = Favorite.new
 
   end
@@ -47,19 +52,35 @@ class Public::EventsController < ApplicationController
 
   def update
     @event = Event.find(params[:id])
-    @event.update(event_params)
-    redirect_to event_path(@event)
+    if @event.update(event_params.merge(start_time: @start_time, end_time: @end_time))
+
+      redirect_to event_path(@event)
+      flash[:notice] = "タスク情報を更新しました"
+    else
+      render :edit
+    end
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:genre_id, :title, :body, :start_time, :end_time, :is_finished)
+    params.require(:event).permit(:genre_id, :title, :body, :is_finished)
   end
 
   def setup_datetime
-    datetime = DateTime.parse(params["event"]["start_on"])
-    @start_time = datetime.change(hour: params["event"]["start_time(4i)"].to_i, min: params["event"]["start_time(5i)"].to_i)
-    @end_time = datetime.change(hour: params["event"]["end_time(4i)"].to_i, min: params["event"]["end_time(5i)"].to_i)
+    #datetime = DateTime.parse(params["event"]["start_on"])
+    # @start_time = datetime.change(hour: params["event"]["start_time(4i)"].to_i, min: params["event"]["start_time(5i)"].to_i)
+    #@end_time = datetime.change(hour: params["event"]["end_time(4i)"].to_i, min: params["event"]["end_time(5i)"].to_i)
+
+    # start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time(4i)"].to_i}:#{ params["event"]["start_time(5i)"].to_i}"
+    # @start_time = Time.zone.parse(start_str).to_datetime
+    # end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time(4i)"].to_i}:#{ params["event"]["end_time(5i)"].to_i}"
+    # @end_time = Time.zone.parse(end_str).to_datetime
+
+    start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time"].to_i}}"
+    @start_time = Time.zone.parse(start_str).to_datetime
+    end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time"].to_i}}"
+    @end_time = Time.zone.parse(end_str).to_datetime
+
   end
 end

@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  validates :genre_id, presence: true
   validates :title, presence: true, length: {in: 2..10}
   validates :body, presence: true, length: {in: 2..200}
   validates :start_time, presence: true
@@ -20,6 +21,11 @@ class Event < ApplicationRecord
   end
 
   enum is_finished: { untouched: 1, in_progress: 2, completed: 3 }
+
+  def times
+    times = {"9:00": "9:00",
+             "9:30": "9:30"}
+  end
 
   # def check_days(event)
     # day = event.start_time.wday

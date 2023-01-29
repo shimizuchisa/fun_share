@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_21_113533) do
+ActiveRecord::Schema.define(version: 2023_01_25_024422) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2023_01_21_113533) do
   create_table "comments", force: :cascade do |t|
     t.integer "event_id", null: false
     t.integer "user_id", null: false
-    t.text "comment", null: false
+    t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["event_id"], name: "index_comments_on_event_id"

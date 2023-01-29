@@ -1,6 +1,5 @@
 <%= render 'layouts/public_header' %>
 <div class="container">
-  <%= render 'layouts/notice_expression' %>
   <div class="row">
     <div class="col-md-2">
       <div class="text-center">
@@ -12,6 +11,7 @@
       </div>
     </div>
     <div class="col-md-4 offset-md-1">
+      <%= render 'layouts/notice_expression' %>
       <h1>タスク詳細</h1>
       <div class="row">
         <%= render 'layouts/event_show', event: @event %>
@@ -38,8 +38,8 @@
     </div>
 
     <div class="col-md-4 offset-md-1">
+      <div>
       <%= render 'layouts/event_charger', event: @event %>
-
       <% if @event.charged_by?(current_user) %>
         <div class="row">
           <%= link_to event_charges_path(@event), method: :delete do %>
@@ -53,15 +53,20 @@
           <% end %>
         </div>
       <% end %>
-      <div class="row mt-3">
-        <%= render "layouts/comments_index", comments: @comments %>
-        <table class="table">
-            <%= form_with model: @comment, url: event_comments_path(@event, event_id: @event.id), method: :post do |f| %>
-              <%= f.label :comment, "新規投稿" %>
-              <%= f.text_area :comment, row: 3, class: "form-control" %>
-              <%= f.submit "投稿する", class: "btn btn-success" %>
-            <% end %>
-        </table>
+      </div>
+      <div class="row mt-5 mb-5">
+        <%= form_with model: @comment, url: event_comments_path(@event, event_id: @event.id), method: :post do |f| %>
+          <div clas="form-field">
+            <h3>コメント投稿</h3>
+            <%= f.text_area :body, row: 3, class: "field-control" %>
+          </div>
+          <div clas="form-field">
+            <%= f.submit "投稿する", class: "btn btn-outline-primary mt-1" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+          <%= render "layouts/comments_index", comments: @comments %>
       </div>
     </div>
   </div>
