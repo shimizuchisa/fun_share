@@ -25,13 +25,21 @@
             <td><%= f.date_field :start_on, value: @event.start_time.to_date %></td>
           </tr>
           <tr>
-            <td><%= f.label :start_time, "開始時間" %></td>
-            <td><%= f.time_select :start_time, {minute_step: 30} %></td>
-          </tr>
-          <tr>
-            <td><%= f.label :end_time, "終了時間" %></td>
-            <td><%= f.time_select :end_time, {minute_step: 30} %></td>
-          </tr>
+                <td><%= f.label :start_time, "開始時間" %></td>
+                <td><%= f.time_select :start_time, {minute_step: 30} %></td>
+              </tr>
+              <tr>
+                <td><%= f.label :end_time, "終了時間" %></td>
+                <td><%= f.time_select :end_time, {minute_step: 30} %></td>
+              </tr>
+          <!--<tr>-->
+          <!--  <td>%= f.label :start_time, "開始時間" %></td>-->
+          <!--  <td>%= f.select :start_time, times, value: @event.start_time.to_time %></td>-->
+          <!--</tr>-->
+          <!--<tr>-->
+          <!--  <td>%= f.label :end_time, "終了時間" %></td>-->
+          <!--  <td>%= f.select :end_time, times %></td>-->
+          <!--</tr>-->
           <tr>
             <td><%= f.label :is_finished, "進捗状況" %></td>
             <td><%= f.select :is_finished, Event.is_finisheds_i18n.invert %></td>

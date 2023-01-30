@@ -19,7 +19,7 @@
       <td><%= l comment.created_at, format: :day %></td>
       <td><%= comment.event.genre.name %></td>
       <td><%= comment.event.title %></td>
-      <td><%= comment.comment %></td>
+      <td><%= comment.body %></td>
       <td>
         <%= link_to "削除", admin_event_comment_path(comment.event, comment, event_id: comment.event.id, comment_id: comment.id), method: :delete, data: { confirm: '削除しますか？' }, class: "btn btn-outline-danger btn-sm" %>
       </td>

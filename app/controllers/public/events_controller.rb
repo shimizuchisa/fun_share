@@ -1,6 +1,6 @@
 class Public::EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :setup_datetime, only: [:create, :update]
+  # before_action :setup_datetime, only: [:create, :update]
 
   def index
     @user = current_user
@@ -23,6 +23,10 @@ class Public::EventsController < ApplicationController
   end
 
   def create
+    start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time"].to_i}}"
+    @start_time = Time.zone.parse(start_str).to_datetime
+    end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time"].to_i}}"
+    @end_time = Time.zone.parse(end_str).to_datetime
     @event = Event.new(event_params.merge(start_time: @start_time, end_time: @end_time))
    # @event = Event.new(event_params)
     @event.user_id = current_user.id
@@ -51,6 +55,11 @@ class Public::EventsController < ApplicationController
   end
 
   def update
+    start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time(4i)"].to_i}:#{ params["event"]["start_time(5i)"].to_i}"
+    @start_time = Time.zone.parse(start_str).to_datetime
+    end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time(4i)"].to_i}:#{ params["event"]["end_time(5i)"].to_i}"
+    @end_time = Time.zone.parse(end_str).to_datetime
+
     @event = Event.find(params[:id])
     if @event.update(event_params.merge(start_time: @start_time, end_time: @end_time))
 
@@ -72,15 +81,8 @@ class Public::EventsController < ApplicationController
     # @start_time = datetime.change(hour: params["event"]["start_time(4i)"].to_i, min: params["event"]["start_time(5i)"].to_i)
     #@end_time = datetime.change(hour: params["event"]["end_time(4i)"].to_i, min: params["event"]["end_time(5i)"].to_i)
 
-    # start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time(4i)"].to_i}:#{ params["event"]["start_time(5i)"].to_i}"
-    # @start_time = Time.zone.parse(start_str).to_datetime
-    # end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time(4i)"].to_i}:#{ params["event"]["end_time(5i)"].to_i}"
-    # @end_time = Time.zone.parse(end_str).to_datetime
 
-    start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time"].to_i}}"
-    @start_time = Time.zone.parse(start_str).to_datetime
-    end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time"].to_i}}"
-    @end_time = Time.zone.parse(end_str).to_datetime
+
 
   end
 end
