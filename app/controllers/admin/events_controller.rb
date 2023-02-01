@@ -18,7 +18,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def show
-    @events = Event.all
+    @events = Event.all.order(start_time: "ASC")
     @event = Event.find(params[:id])
     @charges = @event.charges.page(params[:page])
     @comments = @event.comments.page(params[:page])
@@ -29,14 +29,23 @@ class Admin::EventsController < ApplicationController
   end
 
   def update
+    start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time(4i)"].to_i}:#{ params["event"]["start_time(5i)"].to_i}"
+    @start_time = Time.zone.parse(start_str).to_datetime
+    end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time(4i)"].to_i}:#{ params["event"]["end_time(5i)"].to_i}"
+    @end_time = Time.zone.parse(end_str).to_datetime
     @event = Event.find(params[:id])
-    @event.update(event_params)
-    redirect_to admin_event_path(@event)
+    if @event.update(event_params.merge(start_time: @start_time, end_time: @end_time))
+      redirect_to admin_event_path(@event)
+      flash[:notice] = "タスク情報を更新しました"
+    else
+      flash[:alert] = "全ての項目を入力してください"
+      render :edit
+    end
   end
 
   private
 
   def event_params
-    params.require(:event).permit(:genre_id, :user_id, :start_on, :title, :body, :start_time, :end_time, :is_finished)
+    params.require(:event).permit(:genre_id, :user_id, :title, :body, :is_finished)
   end
 end

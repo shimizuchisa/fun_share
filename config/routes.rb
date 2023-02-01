@@ -7,16 +7,16 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root 'homes#top'
-    resources :genres, only: [:index, :create, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update] do
       resources :comments, only: [:index]
       delete 'comments/destroy_all' => 'comments#user_destroy_all'
     end
     resources :charges, only: [:index]
     resources :events, only: [:index, :show, :edit, :update] do
+      delete 'comments/destroy_all' => 'comments#destroy_all'
       resources :comments, only: [:index, :show, :update, :destroy]
       resources :charges, only: [:show, :update, :destroy]
-      delete 'comments/destroy_all' => 'comments#event_destroy_all'
     end
     resources :charges, only: [:index]
     resources :favorites, only: [:index]

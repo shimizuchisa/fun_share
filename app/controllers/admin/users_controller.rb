@@ -17,14 +17,18 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to admin_user_path(@user)
-    flash[:notice] = "ステータスが更新されました"
+    if @user.update(user_params)
+      redirect_to admin_user_path(@user)
+      flash[:notice] = "会員情報が更新されました"
+    else
+      flash[:alert] = "すべての項目を入力してください"
+      render :edit
+    end
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:is_deleted)
+    params.require(:user).permit(:last_name, :first_name, :telephone_number, :email, :is_deleted)
   end
 end

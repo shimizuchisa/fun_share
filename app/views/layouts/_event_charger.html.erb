@@ -10,7 +10,11 @@
               <span class="lead"><%= charge.user.name_display %></span>
             <% end %>
           <% else %>
-            <span class="lead"><%= charge.user.name_display %></span>
+            <% if current_user == charge.user %>
+              <span class="lead text-primary"><%= charge.user.name_display %></span>
+            <% else %>
+              <span class="lead"><%= charge.user.name_display %></span>
+            <% end %>
           <% end %>
         </td>
       </tr>

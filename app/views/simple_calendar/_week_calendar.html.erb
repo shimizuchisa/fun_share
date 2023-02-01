@@ -28,8 +28,14 @@
               <% @events.each do |event| %>
                 <% if event.start_time.to_date == @event.start_time.to_date  %>
                   <div>
-                    <%= link_to event_path(event) do %>
-                      <span>●</span><%= event.title %>
+                    <% if admin_signed_in? %>
+                      <%= link_to admin_event_path(event) do %>
+                        <span>●</span><%= event.title %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to event_path(event) do %>
+                        <span>●</span><%= event.title %>
+                      <% end %>
                     <% end %>
                   </div>
                 <% end %>

@@ -1,6 +1,5 @@
 <%= render 'layouts/admin_header' %>
 <div class="container">
-  <%= render 'layouts/notice_expression' %>
   <div class="row">
     <div class="col-md-2">
       <div class="text-center">
@@ -12,26 +11,25 @@
       </div>
     </div>
     <div class="col-md-5">
+      <%= render 'layouts/notice_expression' %>
       <h2>タスク詳細</h2>
       <div class="row">
         <%= render 'layouts/event_show', event: @event %>
-      </div>
-      <%= link_to "編集する", edit_admin_event_path(@event), class: "btn btn-primary" %>
-      <div class="row mt-4">
-        <p>
-          <% if @event.favorites.exists? %>
-            <btn class="btn btn-outline-info">❤<%= @event.favorites.count %> いいね</btn>
-          <% else %>
-            <btn class="btn btn-outline-info">♡<%= @event.favorites.count %> いいね</btn>
-          <% end %>
-        </p>
+        <% if @event.favorites.exists? %>
+          <p>❤<%= @event.favorites.count %> いいね</p>
+        <% else %>
+          <p>♡<%= @event.favorites.count %> いいね</p>
+        <% end %>
+        <div class="row w-100">
+          <%= link_to "編集する", edit_admin_event_path(@event), class: "btn btn-primary" %>
+        </div>
       </div>
     </div>
     <div class="col-md-4 offset-md-1">
       <%= render 'layouts/event_charger', event: @event %>
       <%= render 'layouts/comments_index', comments: @comments %>
       <div class="row w-50">
-        <%= link_to "全コメント削除", admin_root_path, class: "btn btn-danger" %>
+        <%= link_to "全コメント削除", admin_event_comments_destroy_all_path(@event), method: :delete, data: {confirm: "全てのコメントを削除しますか？"}, class: "btn btn-danger" %>
       </div>
     </div>
   </div>
