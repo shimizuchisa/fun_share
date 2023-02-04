@@ -21,13 +21,13 @@
           <td><%= @user.events.count %>件 <%= link_to "一覧", events_path(user_id: current_user.id), class: "btn btn-primary" %></td>
         </tr>
       </table>
-      <div class="btn mb-4">
+      <div class="btn mb-4 col-md-2">
         <%= link_to "会員情報編集", users_mypage_edit_path, class: "btn btn-success" %>
       </div>
-      <div class="btn mb-4">
+      <div class="btn mb-4 col-md-2">
         <%= link_to "担当タスク一覧", charges_path, class: "btn btn-outline-primary" %>
       </div>
-      <div class="btn mb-4">
+      <div class="btn mb-4 col-md-2">
         <%= link_to "ブックマークタスク一覧", favorites_path, class: "btn btn-outline-info" %>
       </div>
     </div>

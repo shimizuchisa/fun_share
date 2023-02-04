@@ -31,10 +31,10 @@
       </table>
 
       <div>
-        <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success mr-5" %>
-        <%= link_to "登録タスク一覧", admin_events_path(user_id: @user.id), class: "btn btn-outline-primary mr-5" %>
-        <%= link_to "担当タスク一覧", admin_charges_path(user_id: @user.id), class: "btn btn-outline-info mr-5" %>
-        <%= link_to "投稿コメント一覧", admin_user_comments_path(user_id: @user.id), class: "btn btn-outline-info mr-5" %>
+        <%= link_to "編集", edit_admin_user_path(@user), class: "btn btn-success mr-5 mb-3 col-md-2" %>
+        <%= link_to "登録タスク一覧", admin_events_path(user_id: @user.id), class: "btn btn-outline-primary mr-5 mb-3 col-md-2" %>
+        <%= link_to "担当タスク一覧", admin_charges_path(user_id: @user.id), class: "btn btn-outline-info mr-5 mb-3 col-md-2" %>
+        <%= link_to "投稿コメント一覧", admin_user_comments_path(user_id: @user.id), class: "btn btn-outline-info mr-5 col-md-2" %>
       </div>
     </div>
   </div>

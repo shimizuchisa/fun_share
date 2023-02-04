@@ -37,7 +37,7 @@ class Public::UsersController < ApplicationController
   end
 
   def ensure_normal_user
-    if current_user.email == 'guest@example.com'
+    if current_user.email == "guest@example.com"
       flash[:alert] = "ゲストユーザーの情報の編集はできません"
       render :edit
     end
