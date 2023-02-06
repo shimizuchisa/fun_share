@@ -1,6 +1,6 @@
 # Additional translations at https://github.com/heartcombo/devise/wiki/I18n
 
-en:
+ja:
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."
@@ -46,9 +46,7 @@ en:
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again."
     sessions:
-      users: 
-        signed_in: "Signed in successfully."
-      signed_in: "Signed in successfully."
+      signed_in: 'ログインしました'
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
     unlocks:

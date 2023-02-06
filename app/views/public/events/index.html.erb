@@ -1,24 +1,24 @@
 <%= render 'layouts/public_header' %>
 <div class="container">
-  <%= render 'layouts/event_index_search' %>
+  <!--%= render 'layouts/event_index_search' %>-->
   <div class="search_box mb-4">
-    <div class="row search col-4">
-    <%= form_with url: events_path, method: :get do |f| %>
-      <%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), :prompt => "ジャンルを選択してください", class: "form-control" %>
-      <%= f.submit "検索", class: "ml-auto" %>
-    <% end %>
-    </div>
-    <div class="row search col-4">
-    <%= form_with url: events_path, method: :get do |f| %>
-      <%= f.select :user_id, options_from_collection_for_select(User.all, :id, :name_display), :prompt => "タスク登録者を選択してください" %>
-      <%= f.submit "検索" %>
-    <% end %>
-    </div>
-    <div class="row search col-4">
-    <%= form_with url: events_path, method: :get do |f| %>
-      <%= f.select :is_finished, Event.is_finisheds_i18n.invert, :prompt => "進捗状況を選択してください" %>
-      <%= f.submit "検索" %>
-    <% end %>
+    <div class="row">
+      <div class="col-sm-4">
+        <%= form_with url: events_path, method: :get do |f| %>
+          <div class="form-group">
+            <%= f.collection_select :genre_id, Genre.all, :id, :name, { include_blank: "ジャンルを選択してください", selected: params[:genre_id] }, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.collection_select :user_id, User.all, :id, :name_display, { include_blank: "タスク登録者を選択してください", selected: params[:user_id] }, class: "form-control" %>
+          </div>
+          <div class="form_group">
+            <%= f.select :is_finished, Event.is_finisheds_i18n.invert, { include_blank: "進捗状況を選択してください", selected: params[:is_finished] }, class: "form-control" %>
+          </div>
+          <div class="form_group mt-3">
+            <%= f.submit "検索する", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 
