@@ -5,12 +5,10 @@ class Public::EventsController < ApplicationController
   def index
     @user = current_user
     @events = Event.all
-   
     @events = @events.where(genre_id: params[:genre_id]) if params[:genre_id].present?
     @events = @events.where(user_id: params[:user_id]) if params[:user_id].present?
     @events = @events.where(is_finished: params[:is_finished]) if params[:is_finished].present?
     @events = @events.where('title LIKE ?',"%#{params[:search]}%").or(@events.where('body LIKE ?',"%#{params[:search]}%")) if params[:search]
-
     @events = @events.order(start_time: "ASC").page(params[:page])
   end
 

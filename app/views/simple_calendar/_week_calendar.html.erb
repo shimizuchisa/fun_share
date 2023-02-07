@@ -11,39 +11,24 @@
   </div>
 
   <table class="table table-borderless">
-    <thead>
-      <tr>
-        <!--% date_range.slice(0, 1).each do |day| %>-->
-          <!--<th>%= @event.start_on.abbr_day_names %></th>-->
-        <!--% end %>-->
-      </tr>
-    </thead>
     <tbody>
-
-        <!--% times.each do |time| %>-->
-        <tr>
-          <!--<td>%= time %></td>-->
-          <td class="table-active">
-            <div>
-              <% @events.each do |event| %>
-                <% if event.start_time.to_date == @event.start_time.to_date  %>
-                  <div>
-                    <% if admin_signed_in? %>
-                      <%= link_to admin_event_path(event) do %>
-                        <span>●</span><%= event.title %>
-                      <% end %>
-                    <% else %>
-                      <%= link_to event_path(event) do %>
-                        <span>●</span><%= event.title %>
-                      <% end %>
+      <tr>
+        <td class="table-active">
+            <% @events.each do |event| %>
+              <% if event.start_time.to_date == @event.start_time.to_date  %>
+                  <% if admin_signed_in? %>
+                    <%= link_to admin_event_path(event) do %>
+                      <div class="text-left"><span>●</span><%= event.title %></div>
                     <% end %>
-                  </div>
-                <% end %>
+                  <% else %>
+                    <%= link_to event_path(event) do %>
+                      <div class="text-left"><span>●</span><%= event.title %></div>
+                    <% end %>
+                  <% end %>
               <% end %>
-            </div>
-          </td>
-        </tr>
-        <!--% end %>-->
+            <% end %>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

@@ -11,11 +11,11 @@
           <%= link_to(admin_event_path(event)) do %>
             <div>
               <% if event.charges.exists? && (event.is_finished == "untouched") %>
-                <p class="text-warning"><%= event.title %></p>
+                <p class="text-warning text-left"><%= event.title %></p>
               <% elsif event.charges.exists? %>
-                <p><%= event.title %></p>
+                <p class="text-left"><%= event.title %></p>
               <% else %>
-                <p class="text-danger"><span><i class="fas fa-exclamation-triangle"></i></span><%= event.title %></p>
+                <p class="text-danger text-left"><span><i class="fas fa-exclamation-triangle"></i></span><%= event.title %></p>
               <% end %>
             </div>
           <% end %>
