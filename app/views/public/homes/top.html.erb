@@ -2,22 +2,20 @@
 <div class="container">
   <h1>タスクカレンダー</h1>
   <div class="row">
-    <div class="col-10 text-center">
+    <div class="col-md-12 text-center">
       <%= month_calendar events: @events do |date, events| %>
         <div>
           <%= date.day %>
         </div>
           <% events.each do |event| %>
             <%= link_to(event_path(event)) do %>
-              <div>
-                <% if @user == event.user && event.charges.where(user_id: @user.id).exists? %>
-                  <span><i class="fas fa-pen" style="color: black;"></i></span><%= event.title %><span><i class="fas fa-flag" style="color: red;"></i></span>
-                <!--ログインユーザーがタスク登録者か確認-->
-                <% elsif @user == event.user %>
-                  <span><i class="fas fa-pen" style="color: black;"></i></span><%= event.title %>
-                <!--ログインユーザーがタスク担当者か確認-->
+              <div class="text-left">
+                <!--タスク担当者がいるか？-->
+                <% if !event.charges.exists? %>
+                  <span class="text-danger"><%= event.title %></span>
+                <!--ログインユーザーがタスク担当者か？-->
                 <% elsif event.charges.where(user_id: @user.id).exists? %>
-                  <%= event.title %><span><i class="fas fa-flag" style="color: red;"></i></span>
+                  <span><%= event.title %><span><i class="fas fa-flag" style="color: blue;"></i></span></span>
                 <% else %>
                   <%= event.title %>
                 <% end %>

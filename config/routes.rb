@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       delete 'comments/destroy_all' => 'comments#user_destroy_all'
     end
     resources :charges, only: [:index]
-    resources :events, only: [:index, :show, :edit, :update] do
+    resources :events, only: [:index, :show, :edit, :update, :destroy] do
       delete 'comments/destroy_all' => 'comments#destroy_all'
       resources :comments, only: [:index, :show, :update, :destroy]
       resources :charges, only: [:show, :update, :destroy]

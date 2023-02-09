@@ -1,6 +1,5 @@
-<div class="row">
-  <h3 class="w-100">タスク担当者</h3>
-  <% if event.charges.exists? %>
+<h3 class="w-100">タスク担当者</h3>
+<% if event.charges.exists? %>
   <table class="w-75 mx-auto">
     <% event.charges.each do |charge| %>
       <tr>
@@ -20,7 +19,6 @@
       </tr>
     <% end %>
   </table>
-  <% else %>
-    <p class="text-danger">担当者がいません</p>
-  <% end %>
-</div>
+<% else %>
+  <p class="text-danger">担当者がいません</p>
+<% end %>

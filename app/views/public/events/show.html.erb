@@ -16,7 +16,6 @@
       <div class="row">
         <%= render 'layouts/event_show', event: @event %>
       </div>
-
       <% if @event.favorited_by?(current_user) %>
         <p>
           <%= link_to event_favorites_path(@event), method: :delete, class: "btn btn-light" do %>
@@ -36,7 +35,6 @@
         </div>
       <% end %>
     </div>
-
     <div class="col-md-4 offset-md-1">
       <div>
       <%= render 'layouts/event_charger', event: @event %>

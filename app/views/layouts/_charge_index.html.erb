@@ -1,18 +1,19 @@
-<h3>担当タスク一覧</h3>
-      <table class="table">
-        <thead class="table-light">
-          <tr>
-            <td>日付</td>
-            <td>ジャンル</td>
-            <td>タスク名</td>
-            <td>進捗状況</td>
-          </tr>
-        </thead>
-        <% charges.each do |charge| %>
-        <tr>
-          <td><%= l charge.event.start_time, format: :day %></td>
-          <td><%= charge.event.genre.name %></td>
-          <td>
+  <h3>担当タスク一覧</h3>
+  <table class="table">
+    <thead class="table-light">
+      <tr>
+        <td>日付</td>
+        <td>ジャンル</td>
+        <td>タスク名</td>
+        <td>進捗状況</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% charges.each do |charge| %>
+      <tr>
+        <td><%= l charge.event.start_time, format: :day %></td>
+        <td><%= charge.event.genre.name %></td>
+        <td>
           <% if current_user == @user %>
             <%= link_to(event_path(charge.event)) do %>
               <%= charge.event.title %>
@@ -22,11 +23,12 @@
               <%= charge.event.title %>
             <% end %>
           <% end %>
-          </td>
-          <td><%= charge.event.is_finished_i18n %></td>
-        </tr>
-        <% end %>
-      </table>
-      <div class="w-100">
-        <%= paginate charges %>
-      </div>
+        </td>
+        <td><%= charge.event.is_finished_i18n %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="w-100">
+    <%= paginate charges %>
+  </div>
