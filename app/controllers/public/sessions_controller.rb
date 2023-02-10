@@ -36,8 +36,13 @@ class Public::SessionsController < Devise::SessionsController
   # 退会会員の再ログイン禁止
   def reject_inactive_user
     @user = User.find_by(email: params[:user][:email])
-    if @user.valid_password?(params[:user][:password]) && @user.is_deleted
-      flash[:danger] = 'この会員は退会済みです。'
+    if @user
+      if @user.valid_password?(params[:user][:password]) && @user.is_deleted
+        flash[:danger] = 'この会員は退会済みです。'
+        redirect_to new_user_session_path
+      end
+    else
+      flash[:alert] = '入力情報に誤りがあります。'
       redirect_to new_user_session_path
     end
   end

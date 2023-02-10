@@ -1,9 +1,8 @@
-<%= render 'layouts/public_header' %>
 <div class="container">
   <h4>検索条件入力</h4>
   <div class="search_box mb-4">
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-10 mx-auto">
         <%= form_with url: events_path, method: :get do |f| %>
           <div class="form-group form-inline">
             <%= f.label :genre_id, "ジャンル：", class: "col-md-2 justify-content-start" %>
@@ -24,6 +23,5 @@
       </div>
     </div>
   </div>
-
   <%= render 'layouts/event_index', {user: @user, events: @events} %>
 </div>

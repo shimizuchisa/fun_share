@@ -1,6 +1,5 @@
-<%= render 'layouts/public_header' %>
 <div class="container">
-  <%= render 'layouts/notice_expression' %>
+  <%= render 'layouts/error_messages', variable: @event %>
   <h2>タスク編集</h2>
   <div class="row">
     <%= render 'layouts/error_messages', variable: @event %>
