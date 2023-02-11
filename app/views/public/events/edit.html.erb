@@ -3,29 +3,29 @@
   <h2>タスク編集</h2>
   <div class="row">
     <%= render 'layouts/error_messages', variable: @event %>
-    <div class="col-md-10">
+    <div class="col-md-8 mx-auto">
       <%= form_with model: @event, url: event_path(@event), method: :patch do |f| %>
-        <table class="table">
+        <table class="table table-borderless">
           <tr>
             <td><%= f.label :genre_id, "ジャンル" %></td>
-            <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name) %></td>
+            <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {}, class: "form-control" %></td>
             <!--f.select :プロパティ名, options_from_collection_for_select(モデル, :フォームで送る値(メソッド), :セレクトボックスに表示する値(メソッド))-->
           </tr>
           <tr>
             <td><%= f.label :title, "タイトル" %></td>
-            <td><%= f.text_field :title %></td>
+            <td><%= f.text_field :title, class: "form-control" %></td>
           </tr>
           <tr>
             <td><%= f.label :body, "内容" %></td>
-            <td><%= f.text_area :body, row: 3 %></td>
+            <td><%= f.text_area :body, row: 3, class: "form-control" %></td>
           </tr>
           <tr>
             <td><%= f.label :start_on, "日付" %></td>
-            <td><%= f.date_field :start_on, value: @event.start_time.to_date %></td>
+            <td><%= f.date_field :start_on, value: @event.start_time.to_date, class: "form-control" %></td>
           </tr>
           <tr>
             <td><%= f.label :start_time, "開始時間" %></td>
-            <td><%= f.time_select :start_time, {minute_step: 30} %></td>
+            <td class="bootstrap-date"><%= f.time_select :start_time, {minute_step: 30}, class: "form-control form-inline" %></td>
           </tr>
           <tr>
             <td><%= f.label :end_time, "終了時間" %></td>
@@ -41,11 +41,11 @@
           <!--</tr>-->
           <tr>
             <td><%= f.label :is_finished, "進捗状況" %></td>
-            <td><%= f.select :is_finished, Event.is_finisheds_i18n.invert %></td>
+            <td><%= f.select :is_finished, Event.is_finisheds_i18n.invert, {}, class: "form-control" %></td>
             <!--.inverで表示を日本語・送るvalueを英語にする-->
           </tr>
           <tr>
-            <td><%= f.submit "変更を保存", class: "btn btn-success" %></td>
+            <td><%= f.submit "変更を保存", class: "btn btn-success form-control" %></td>
           </tr>
          </table>
       <% end %>

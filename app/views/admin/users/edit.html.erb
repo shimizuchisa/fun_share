@@ -1,11 +1,10 @@
-<%= render 'layouts/admin_header' %>
 <div class="container">
-  <%= render 'layouts/notice_expression' %>
-  <h2><%= @user.name_display %>さんの会員情報編集</h2>
+  <%= render 'layouts/error_messages', variable: @user %>
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-8 mx-auto">
+      <h2><%= @user.name_display %>さんの会員情報編集</h2>
       <%= form_with model: @user, url: admin_user_path(@user), method: :patch do |f| %>
-      <table class="table">
+      <table class="table table-borderless mt-4">
           <tr>
             <td><%= f.label :last_name, "姓" %></td>
             <td><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control" %></td>

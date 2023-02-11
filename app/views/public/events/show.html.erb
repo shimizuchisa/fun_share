@@ -29,13 +29,13 @@
         </p>
       <% end %>
       <% if @event.charged_by?(current_user) || current_user == @event.user %>
-        <div class="row">
+        <div class="mb-4">
           <%= link_to "タスク編集", edit_event_path(@event), class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
     <div class="col-md-4 offset-md-1">
-      <div>
+      <div class="row mb-5">
       <%= render 'layouts/event_charger', event: @event %>
         <div class="row w-100">
         <% if @event.charged_by?(current_user) %>
@@ -54,15 +54,17 @@
         </div>
       </div>
       <div class="row mt-5 mb-5">
+        <div class="col-12">
         <%= form_with model: @comment, url: event_comments_path(@event, event_id: @event.id), method: :post do |f| %>
-          <div clas="form-field">
+          <div class="form-field">
             <h3>コメント投稿</h3>
-            <%= f.text_area :body, row: 3, class: "field-control" %>
+            <%= f.text_area :body, row: 3, class: "form-control" %>
           </div>
-          <div clas="form-field">
+          <div class="ml-auto">
             <%= f.submit "投稿する", class: "btn btn-outline-primary mt-1" %>
           </div>
         <% end %>
+        </div>
       </div>
       <div class="row">
           <%= render "layouts/comments_index", comments: @comments %>

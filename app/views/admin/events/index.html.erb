@@ -1,8 +1,7 @@
-<%= render 'layouts/admin_header' %>
 <div class="container">
-  <h4>検索条件</h4>
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-8 mx-auto">
+      <h4>検索条件</h4>
       <%= form_with url: admin_events_path, method: :get do |f| %>
       <div class="form-group form-inline">
         <%= f.label :genre_id, "ジャンル：", class: "col-md-2 justify-content-start" %>

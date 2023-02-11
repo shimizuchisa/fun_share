@@ -1,24 +1,26 @@
-<h3 class="w-100">タスク担当者</h3>
-<% if event.charges.exists? %>
-  <table class="w-75 mx-auto">
-    <% event.charges.each do |charge| %>
-      <tr>
-        <td>
-          <% if admin_signed_in? %>
-            <%= link_to admin_user_path(charge.user) do %>
-              <span class="lead"><%= charge.user.name_display %></span>
-            <% end %>
-          <% else %>
-            <% if current_user == charge.user %>
-              <span class="lead text-primary"><%= charge.user.name_display %></span>
+<div class="col-12">
+  <h3 class="w-100">タスク担当者</h3>
+  <% if event.charges.exists? %>
+    <table class="w-75 mx-auto">
+      <% event.charges.each do |charge| %>
+        <tr>
+          <td>
+            <% if admin_signed_in? %>
+              <%= link_to admin_user_path(charge.user) do %>
+                <span class="lead"><%= charge.user.name_display %></span>
+              <% end %>
             <% else %>
-              <span class="lead"><%= charge.user.name_display %></span>
+              <% if current_user == charge.user %>
+                <span class="lead text-primary"><%= charge.user.name_display %></span>
+              <% else %>
+                <span class="lead"><%= charge.user.name_display %></span>
+              <% end %>
             <% end %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-<% else %>
-  <p class="text-danger">担当者がいません</p>
-<% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <p class="text-danger">担当者がいません</p>
+  <% end %>
+</div>
