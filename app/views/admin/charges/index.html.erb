@@ -1,8 +1,4 @@
-<%= render "layouts/admin_header" %>
 <div class="container">
-  <duv class="row">
-    <div class="col-md-10">
-      <%= render 'layouts/charge_index', charges: @charges %>
-    </div>
-  </duv>
+  <%= render 'layouts/event_search.html.erb',path: admin_events_path %>
+  <%= render 'layouts/charge_index', charges: @charges %>
 </div>

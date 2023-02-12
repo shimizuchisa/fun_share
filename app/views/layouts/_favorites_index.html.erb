@@ -1,29 +1,33 @@
-      <h3 class="mt-5">ブックマークタスク一覧</h3>
-      <table class="table">
-        <thead class="table-light">
-          <tr>
-            <td>日付</td>
-            <td>ジャンル</td>
-            <td>タスク名</td>
-            <td>進捗状況</td>
-          </tr>
-        </thead>
-        <% favorites.each do |favorite|%>
+<duv class="row">
+  <div class="col-md-8 mx-auto">
+    <h3 class="mt-5">ブックマークタスク一覧</h3>
+    <table class="table">
+      <thead class="table-light">
         <tr>
-          <td><%= l favorite.event.start_time, format: :day %></td>
-          <td><%= favorite.event.genre.name %></td>
-          <td>
-            <% if admin_signed_in? %>
-              <%= link_to(admin_event_path(favorite.event)) do %>
-                <%= favorite.event.title %>
-              <% end %>
-            <% elsif current_user == @user %>
-              <%= link_to(event_path(favorite.event)) do %>
-                <%= favorite.event.title %>
-              <% end %>
-            <% end %>
-          </td>
-          <td><%= favorite.event.is_finished_i18n %></td>
+          <td>日付</td>
+          <td>ジャンル</td>
+          <td>タスク名</td>
+          <td>進捗状況</td>
         </tr>
-        <% end %>
-      </table>
+      </thead>
+      <% favorites.each do |favorite|%>
+      <tr>
+        <td><%= l favorite.event.start_time, format: :day %></td>
+        <td><%= favorite.event.genre.name %></td>
+        <td>
+          <% if admin_signed_in? %>
+            <%= link_to(admin_event_path(favorite.event)) do %>
+              <%= favorite.event.title %>
+            <% end %>
+          <% elsif current_user == @user %>
+            <%= link_to(event_path(favorite.event)) do %>
+              <%= favorite.event.title %>
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= favorite.event.is_finished_i18n %></td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,10 +1,7 @@
 <div class="container">
-  <div class="row">
-    <div class="col-md-10 mx-auto">
-      <%= render 'layouts/favorites_index', favorites: @favorites %>
-      <div class="w-100">
-        <%= paginate @favorites %>
-      </div>
-    </div>
+  <%= render 'layouts/event_search', path: events_path %>
+  <%= render 'layouts/favorites_index', favorites: @favorites %>
+  <div class="w-100">
+    <%= paginate @favorites %>
   </div>
 </div>

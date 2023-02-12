@@ -1,38 +1,34 @@
-<%= render 'layouts/admin_header' %>
 <div class="container">
-  <h2><%= @user.name_display %>さんの投稿コメント一覧</h2>
   <div class="row">
-    <div class="col-md-10">
-      <div class="mt-4 mb-4">
+    <div class="col-md-10 mx-auto">
+      <h2><%= @user.name_display %>さんの投稿コメント一覧</h2>
+      <div class="mt-4 mb-4 offset-md-10">
         <%= link_to "全コメント削除", admin_user_comments_destroy_all_path(@user, user_id: @user.id) , method: :delete, data: { confirm: '削除しますか？' }, class: "btn btn-danger" %>
       </div>
-  <table class="table">
-    <tr>
-      <th>日付</th>
-      <th>ジャンル</th>
-      <th>タスク名</th>
-      <th>コメント</th>
-      <th></th>
-    </tr>
-    <% @comments.each do |comment| %>
-    <tr>
-      <td><%= l comment.created_at, format: :day %></td>
-      <td><%= comment.event.genre.name %></td>
-      <td>
-        <%= link_to(admin_event_path(comment.event)) do %>
-          <%= comment.event.title %>
+      <table class="table table-light">
+        <tr>
+          <th>日付</th>
+          <th>ジャンル</th>
+          <th>タスク名</th>
+          <th>コメント</th>
+          <th></th>
+        </tr>
+        <% @comments.each do |comment| %>
+        <tr>
+          <td><%= l comment.created_at, format: :day %></td>
+          <td><%= comment.event.genre.name %></td>
+          <td>
+            <%= link_to(admin_event_path(comment.event)) do %>
+              <%= comment.event.title %>
+            <% end %>
+          </td>
+          <td><%= comment.body %></td>
+        </tr>
         <% end %>
-      </td>
-      <td><%= comment.body %></td>
-      <!--<td>-->
-      <!--  %= link_to "削除", admin_event_comment_path(comment.event, comment, event_id: comment.event.id, comment_id: comment.id), method: :delete, data: { confirm: 'コメントを削除しますか？' }, class: "btn btn-outline-danger btn-sm" %>-->
-      <!--</td>-->
-    </tr>
-    <% end %>
-  </table>
-  <div class="w-100">
-    <%= paginate @comments %>
-  </div>
+      </table>
+      <div class="w-100">
+        <%= paginate @comments %>
+      </div>
     </div>
   </div>
 </div>
