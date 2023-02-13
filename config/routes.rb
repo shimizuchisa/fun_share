@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     sessions: "public/sessions"
   }
 
+  # ゲスト会員用
   devise_scope :user do
     post 'public/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
@@ -43,8 +44,6 @@ Rails.application.routes.draw do
     resources :events do
       resource :favorites, only: [:create, :destroy]
       resource :charges, only: [:create, :destroy]
-      # resource=単数形→ /:idがURLに含まれなくなる
-      # 1人のユーザーは1つのタスクに対して1担当するため
       resources :comments, only: [:create]
     end
     resources :charges, only: [:index]

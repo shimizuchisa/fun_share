@@ -3,7 +3,7 @@ class Public::FavoritesController < ApplicationController
 
   def index
     @user = current_user
-    @favorites = @user.favorites.page(params[:page]).order(event_start_time: "ASC")
+    @favorites = @user.favorites.order(event_start_time: "ASC").page(params[:page])
   end
 
   def create

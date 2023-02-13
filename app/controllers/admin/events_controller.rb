@@ -32,7 +32,6 @@ class Admin::EventsController < ApplicationController
       redirect_to admin_event_path(@event)
       flash[:notice] = "タスク情報を更新しました"
     else
-      flash[:alert] = "全ての項目を入力してください"
       render :edit
     end
   end

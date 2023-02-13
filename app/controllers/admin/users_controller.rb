@@ -8,7 +8,7 @@ class Admin::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user_charges = @user.charges.order(event_start_time: "ASC")
-    @comments = @user.comments.page(params[:page]).order(created_at: "ASC")
+    @comments = @user.comments.order(created_at: "ASC").page(params[:page])
   end
 
   def edit
@@ -21,7 +21,6 @@ class Admin::UsersController < ApplicationController
       redirect_to admin_user_path(@user)
       flash[:notice] = "会員情報が更新されました"
     else
-      flash[:alert] = "すべての項目を入力してください"
       render :edit
     end
   end

@@ -4,18 +4,18 @@ class Public::UsersController < ApplicationController
   before_action :ensure_normal_user, only: [:update]
 
   def show
-    flash = nil
+    # flash = nil
     @user = current_user
   end
 
   def edit
+    @user = current_user
   end
 
   def update
     if @user.update(user_params)
       redirect_to users_mypage_path, notice: '会員情報の更新に成功しました'
     else
-      flash[:alert] = "入力内容に空欄があります"
       render :edit
     end
   end

@@ -9,15 +9,12 @@ class Admin::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
-      flash[:notice] = "ジャンルを登録しました"
       @genres = Genre.all
       redirect_to admin_genres_path
       flash[:notice] = "ジャンルを登録しました"
     else
-      flash[:alert] = "ジャンル名は２〜１０文字以内で入力してください"
       @genres = Genre.all
       render :index
-      flash[:alert] = "ジャンル名は２〜１０文字以内で入力してください"
     end
   end
 
@@ -32,7 +29,6 @@ class Admin::GenresController < ApplicationController
       redirect_to admin_genres_path
       flash[:notice] = "ジャンル名を更新しました"
     else
-      flash[:alert] = "2~10文字でジャンル名を入力してください"
       render :edit
     end
   end

@@ -1,6 +1,5 @@
 class Public::EventsController < ApplicationController
   before_action :authenticate_user!
-  # before_action :setup_datetime, only: [:create, :update]
 
   def index
     @user = current_user
@@ -57,7 +56,6 @@ class Public::EventsController < ApplicationController
       redirect_to event_path(@event)
       flash[:notice] = "タスク情報を更新しました"
     else
-      flash[:alert] = "全ての項目を入力してください"
       render :edit
     end
   end
@@ -66,15 +64,5 @@ class Public::EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:genre_id, :title, :body, :is_finished)
-  end
-
-  def setup_datetime
-    #datetime = DateTime.parse(params["event"]["start_on"])
-    # @start_time = datetime.change(hour: params["event"]["start_time(4i)"].to_i, min: params["event"]["start_time(5i)"].to_i)
-    #@end_time = datetime.change(hour: params["event"]["end_time(4i)"].to_i, min: params["event"]["end_time(5i)"].to_i)
-
-
-
-
   end
 end
