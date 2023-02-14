@@ -1,7 +1,7 @@
 <div class="container">
-  <%= render 'layouts/error_messages', variable: @user %>
   <div class="row">
     <div class="col-md-8 mx-auto">
+      <%= render 'layouts/notice_expression' %>
       <h2>ログイン</h2>
       <%= form_with model: @user, url: user_session_path do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
