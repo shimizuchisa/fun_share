@@ -12,19 +12,15 @@
     <div class="col-md-4 offset-md-1 mb-4">
       <%= render 'layouts/notice_expression' %>
       <h2>タスク詳細</h2>
-      <div class="row">
-        <%= render 'layouts/event_show', event: @event %>
-        <% if @event.favorites.exists? %>
-          <p>❤<%= @event.favorites.count %> いいね</p>
-        <% else %>
-          <p>♡<%= @event.favorites.count %> いいね</p>
-        <% end %>
-        <div class="w-100 mt-3 mb-4">
-          <%= link_to "編集する", edit_admin_event_path(@event), class: "btn btn-primary" %>
-        </div>
-        <div class="w-100">
-          <%= link_to "削除する", admin_event_path(@event), method: :delete, date: {confirm: "タスクを削除しますか？" }, class: "btn btn-danger" %>
-        </div>
+      <%= render 'layouts/event_show', event: @event %>
+      <% if @event.favorites.exists? %>
+        <p class="ml-2">❤<%= @event.favorites.count %> いいね</p>
+      <% else %>
+        <p class="ml-2">♡<%= @event.favorites.count %> いいね</p>
+      <% end %>
+      <div class="w-100 d-flex justify-content-between">
+        <%= link_to "編集する", edit_admin_event_path(@event), class: "btn btn-primary mb-3" %>
+        <%= link_to "削除する", admin_event_path(@event), method: :delete, date: {confirm: "タスクを削除しますか？" }, class: "btn btn-danger mb-3" %>
       </div>
     </div>
     <div class="col-md-4 offset-md-1">

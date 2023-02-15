@@ -13,7 +13,7 @@ class Public::ChargesController < ApplicationController
 
   def index
     @user = current_user
-    @charges = @user.order(event_start_time: "ASC").charges.page(params[:page])
+    @charges = @user.charges.order(event_start_time: "ASC").page(params[:page])
   end
 
   def destroy

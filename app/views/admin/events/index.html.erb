@@ -1,4 +1,5 @@
 <div class="container">
   <%= render 'layouts/event_search.html.erb',path: admin_events_path %>
+  <%= render 'layouts/notice_expression' %>
   <%= render 'layouts/event_index', {user: @user, events: @events} %>
 </div>

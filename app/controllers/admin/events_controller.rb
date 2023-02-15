@@ -40,6 +40,7 @@ class Admin::EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
     redirect_to admin_events_path
+    flash[:notice] = "イベントを削除しました"
   end
 
   private
