@@ -11,13 +11,13 @@
             <div class="text-left">
               <!--タスク担当者がいるか？-->
               <% if !event.charges.exists? %>
-                <span class="text-danger"><%= event.title %><span><i class="fas fa-exclamation-triangle", style="color: red;"></i></span></%></span>
+                <span class="text-danger">・<%= event.title %><span><i class="fas fa-exclamation-triangle", style="color: red;"></i></span></%></span>
               <!--担当者はいる　かつ　完了していない-->
               <% elsif event.charges.exists? && (event.is_finished != "completed")%>
-                <span class="text-warning"><%= event.title %></span>
+                <span class="text-warning">・<%= event.title %></span>
               <!--完了している-->
               <% elsif event.charges.exists? && (event.is_finished == "completed") %>
-                <span><%= event.title %><span><i class="fas fa-check-circle"></i></span></span>
+                <span>・<%= event.title %><span><i class="fas fa-check-circle"></i></span></span>
               <% end %>
             </div>
           <% end %>

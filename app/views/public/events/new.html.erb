@@ -1,14 +1,13 @@
 <div class="container">
-  <%= render 'layouts/error_messages', variable: @event %>
   <div class="row">
 		<div class="col-md-8 mx-auto">
+		  <%= render 'layouts/error_messages', variable: @event %>
 		  <h1>新規タスク登録</h1>
 		  <%= form_with model: @event, url: events_path do |f| %>
         <table class="table table-borderless">
           <tr>
             <td><%= f.label :genre_id, "ジャンル" %></td>
-            <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {}, :prompt => "選択してください", class: "form-control" %></td>
-            <!--f.select :プロパティ名, options_from_collection_for_select(モデル, :フォームで送る値(メソッド), :セレクトボックスに表示する値(メソッド))-->
+            <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), { prompt: "選択してください"}, class: "form-control" %></td>
           </tr>
           <tr>
             <td><%= f.label :title, "タイトル" %></td>
@@ -22,21 +21,13 @@
             <td><%= f.label :start_on, "日付" %></td>
             <td><%= f.date_field :start_on, class: "form-control" %></td>
           </tr>
-          <!--<tr>-->
-          <!--  <td><%= f.label :start_time, "開始時間" %></td>-->
-          <!--  <td><%= f.time_select :start_time %></td>-->
-          <!--</tr>-->
-          <!--<tr>-->
-          <!--  <td><%= f.label :end_time, "終了時間" %></td>-->
-          <!--  <td><%= f.time_select :end_time %></td>-->
-          <!--</tr>-->
           <tr>
             <td><%= f.label :start_time, "開始時間" %></td>
-            <td><%= f.select :start_time, times, {}, class: "form-control" %></td>
+            <td><%= f.select :start_time, times, {}, class: "time-select", style: "display: inline-block;" %></td>
           </tr>
            <tr>
             <td><%= f.label :end_time, "終了時間" %></td>
-            <td><%= f.select :end_time, times, {}, class: "form-control" %></td><!--selected: Time.current.to_s -->
+            <td><%= f.select :end_time, times, {}, class: "time-select", style: "display: inline-block;" %></td>
           </tr>
         </table>
         <div>

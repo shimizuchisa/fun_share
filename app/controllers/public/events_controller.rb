@@ -27,7 +27,6 @@ class Public::EventsController < ApplicationController
       redirect_to event_path(@event)
       flash[:notice] = "タスクを登録しました"
     else
-      @event = Event.new
       render :new
     end
   end

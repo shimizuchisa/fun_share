@@ -1,12 +1,12 @@
 <div class="container">
-  <%= render 'layouts/notice_expression' %>
   <div class="row">
     <div class="col-md-8 mx-auto">
+      <%= render 'layouts/error_messages', variable: @genre %>
       <h1 class="mb-5">ジャンル一覧</h1>
       <%= form_with model: @genre, url: admin_genres_path, method: :post do |f| %>
         <div class="form-group form-inline">
           <%= f.label :name, "新規ジャンル名(2~10文字)：", class: "mb-2 mx-2" %>
-          <%= f.text_field :name, placeholder: "入力してください", class: "form-control col-md-4 mb-2 mx-2" %>
+          <%= f.text_field :name, placeholder: "入力してください", class: "form-control mb-2 mx-2" %>
           <%= f.submit "ジャンル登録", class: "btn btn-success mx-2 mb-2" %>
         </div>
       <% end %>

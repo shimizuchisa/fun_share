@@ -22,15 +22,4 @@ class Event < ApplicationRecord
 
   enum is_finished: { untouched: 1, in_progress: 2, completed: 3 }
 
-  def times
-    times = {"9:00": "9:00",
-             "9:30": "9:30"}
-  end
-
-  # def check_days(event)
-    # day = event.start_time.wday
-    # days = ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"]
-#整数      0         1        2        3        4        5        6
-    # return days[day]
-  # end
 end

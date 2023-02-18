@@ -11,12 +11,12 @@
               <div class="text-left">
                 <!--タスク担当者がいるか？-->
                 <% if !event.charges.exists? %>
-                  <span class="text-danger"><%= event.title %></span>
+                  <span class="text-danger">・<%= event.title %></span>
                 <!--ログインユーザーがタスク担当者か？-->
                 <% elsif event.charges.where(user_id: @user.id).exists? %>
-                  <span><%= event.title %><span><i class="fas fa-flag" style="color: blue;"></i></span></span>
+                  <span>・<%= event.title %><span><i class="fas fa-flag" style="color: blue;"></i></span></span>
                 <% else %>
-                  <%= event.title %>
+                  <span>・<%= event.title %></span>
                 <% end %>
               </div>
             <% end %>
