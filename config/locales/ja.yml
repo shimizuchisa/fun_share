@@ -69,6 +69,10 @@ ja: # 日本語の設定を行う
         odd: は奇数にしてください
         other_than: は%{count}以外の値にしてください
         present: は入力しないでください
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
         required: を入力してください
         taken: はすでに存在します
         too_long: は%{count}文字以内で入力してください
