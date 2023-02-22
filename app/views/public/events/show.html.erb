@@ -39,30 +39,34 @@
     <div class="col-md-4 offset-md-1">
       <!--タスク担当者を表示-->
       <%= render 'layouts/event_charger', event: @event %>
-      <div class="justify-content-end">
-        <!--カレントユーザーがタスクを担当しているかどうか確認-->
-        <% if @event.charged_by?(current_user) %>
-          <!--カレントユーザーがタスクを担当している：辞退ボタンを表示 -->
-          <%= link_to event_charges_path(@event), method: :delete do %>
-            <btn class="btn btn-danger ml-auto">辞退する</btn>
+      <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+          <!--カレントユーザーがタスクを担当しているかどうか確認-->
+          <% if @event.charged_by?(current_user) %>
+            <!--カレントユーザーがタスクを担当している：辞退ボタンを表示 -->
+            <%= link_to event_charges_path(@event), method: :delete do %>
+              <btn class="btn btn-danger ml-auto">辞退する</btn>
+            <% end %>
+          <% else %>
+            <!--カレントユーザーがタスクを担当していない：担当ボタンを表示 -->
+            <%= link_to event_charges_path(@event), method: :post do %>
+              <btn class="btn btn-success ml-auto">担当する</btn>
+            <% end %>
           <% end %>
-        <% else %>
-          <!--カレントユーザーがタスクを担当していない：担当ボタンを表示 -->
-          <%= link_to event_charges_path(@event), method: :post do %>
-            <btn class="btn btn-success ml-auto">担当する</btn>
-          <% end %>
-        <% end %>
+        </div>
       </div>
-      <div class="justify-content-end">
-        <%= form_with model: @comment, url: event_comments_path(@event, event_id: @event.id), method: :post do |f| %>
-          <div class="form-field">
-            <h3>コメント投稿</h3>
-            <%= f.text_area :body, row: 3, placeholder: "200文字以内で記載してください", class: "form-control" %>
-          </div>
-          <div class="ml-auto">
-            <%= f.submit "投稿する", class: "btn btn-outline-primary mt-1" %>
-          </div>
-        <% end %>
+      <div class="row mt-5">
+        <div class="col-12">
+          <%= form_with model: @comment, url: event_comments_path(@event, event_id: @event.id), method: :post do |f| %>
+            <div class="form-field">
+              <h3>コメント投稿</h3>
+              <%= f.text_area :body, row: 3, placeholder: "200文字以内で記載してください", class: "form-control" %>
+            </div>
+            <div class="d-flex justify-content-end">
+              <%= f.submit "投稿する", class: "btn btn-outline-primary mt-1" %>
+            </div>
+          <% end %>
+        </div>
       </div>
       <%= render "layouts/comments_index", comments: @comments %>
     </div>

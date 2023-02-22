@@ -10,7 +10,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-4 offset-md-1 mb-4">
+    <div class="col-md-4 offset-md-1 mb-5">
       <%= render 'layouts/notice_expression' %>
       <h2>タスク詳細</h2>
       <%= render 'layouts/event_show', event: @event %>
@@ -25,7 +25,7 @@
       <!--コメント一覧を表示-->
       <%= render 'layouts/comments_index', comments: @comments %>
       <div class="row">
-        <div class="ml-auto">
+        <div class="d-flex justify-content-end">
           <% if @event.comments.exists? %>
             <%= link_to "全コメント削除", admin_event_comments_destroy_all_path(@event), method: :delete, data: {confirm: "全てのコメントを削除しますか？"}, class: "btn btn-danger" %>
           <% end %>

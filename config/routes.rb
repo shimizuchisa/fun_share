@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :show, :edit, :update] do
       resources :comments, only: [:index]
-      delete 'comments/destroy_all' => 'comments#user_destroy_all'
     end
     resources :charges, only: [:index]
     resources :events, only: [:index, :show, :edit, :update, :destroy] do
@@ -39,8 +38,8 @@ Rails.application.routes.draw do
     get 'users/mypage' => 'users#show'
     get 'users/mypage/edit' => 'users#edit'
     patch 'users/mypage' => 'users#update'
-    get 'users/unsubscribe' => 'users#unsubscribe'
-    patch 'users/withdraw' => 'users#withdraw'
+    get 'users/unsubscribe' => 'users#unsubscribe' #退会処理確認画面
+    patch 'users/withdraw' => 'users#withdraw' #退会処理
     resources :events do
       resource :favorites, only: [:create, :destroy]
       resource :charges, only: [:create, :destroy]
