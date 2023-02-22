@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-2 mb-4">
       <div class="text-center">
+        <!--同日のタスクを表示-->
         <%= week_calendar events: @events do |date| %>
           <div>
             <%= date.day %>
@@ -24,7 +25,9 @@
       </div>
     </div>
     <div class="col-md-4 offset-md-1">
+      <!--タスク担当者を表示-->
       <%= render 'layouts/event_charger', event: @event %>
+      <!--コメント一覧を表示-->
       <%= render 'layouts/comments_index', comments: @comments %>
       <div class="row">
         <div class="col-12">

@@ -1,27 +1,29 @@
 <div class="container">
-  <h1>タスクカレンダー</h1>
   <div class="row">
     <div class="col-md-12 text-center">
+      <h1 class="text-left">カレンダー</h1>
       <%= month_calendar events: @events do |date, events| %>
         <div>
           <%= date.day %>
         </div>
-          <% events.each do |event| %>
-            <%= link_to(event_path(event)) do %>
-              <div class="text-left">
-                <!--タスク担当者がいるか？-->
-                <% if !event.charges.exists? %>
-                  <span class="text-danger">・<%= event.title %></span>
-                <!--ログインユーザーがタスク担当者か？-->
-                <% elsif event.charges.where(user_id: @user.id).exists? %>
-                  <span>・<%= event.title %><span><i class="fas fa-flag" style="color: blue;"></i></span></span>
-                <% else %>
-                  <span>・<%= event.title %></span>
-                <% end %>
-              </div>
-            <% end %>
+        <% events.each do |event| %>
+          <%= link_to(event_path(event)) do %>
+            <div class="text-left">
+              <!--タスク担当者がいるか？-->
+              <% if !event.charges.exists? %>
+                <span class="text-danger">・<%= event.title %></span>
+              <!--ログインユーザーがタスク担当者か？-->
+              <% elsif event.charges.where(user_id: @user.id).exists? %>
+                <span>・<%= event.title %><span><i class="fas fa-flag" style="color: blue;"></i></span></span>
+              <% else %>
+                <span>・<%= event.title %></span>
+              <% end %>
+            </div>
           <% end %>
         <% end %>
+      <% end %>
+      <p class="text-right" style="font-size: 0.8rem;">＊担当タスクには<span><i class="fas fa-flag"></i></span>が付きます</p>
+      <p class="text-right" style="font-size: 0.8rem;">＊担当者が決まっていないタスクは赤字です</p>
     </div>
   </div>
 </div>

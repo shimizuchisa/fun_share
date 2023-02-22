@@ -11,6 +11,13 @@ class Event < ApplicationRecord
   validates :body, presence: true, length: {in: 2..200}
   validates :start_time, presence: true
   validates :end_time, presence: true
+  validate :start_end_time
+
+  # 開始時間・終了時間の前後チェック
+  def start_end_time
+    errors.add(:end_time, "は開始時間より遅い時間をい設定してください") unless
+    self.start_time < self.end_time
+  end
 
   def charged_by?(user)
     charges.exists?(user_id: user.id)

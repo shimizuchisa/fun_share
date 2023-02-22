@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-md-2">
       <div class="text-center">
+        <!--同日のタスクを表示-->
         <%= week_calendar events: @events do |date| %>
           <div>
             <%= date.day %>
@@ -28,6 +29,7 @@
           <% end %>
         </p>
       <% end %>
+      <!--カレントユーザーがタスク登録者あるいはタスク担当者ならタスク編集ボタンを表示-->
       <% if @event.charged_by?(current_user) || current_user == @event.user %>
         <div class="mb-4">
           <%= link_to "タスク編集", edit_event_path(@event), class: "btn btn-primary" %>
@@ -35,28 +37,30 @@
       <% end %>
     </div>
     <div class="col-md-4 offset-md-1">
+      <!--タスク担当者を表示-->
       <%= render 'layouts/event_charger', event: @event %>
       <div class="row w-100">
-      <% if @event.charged_by?(current_user) %>
         <div class="ml-auto">
-        <%= link_to event_charges_path(@event), method: :delete do %>
-          <btn class="btn btn-danger">辞退する</btn>
-        <% end %>
+          <!--カレントユーザーがタスクを担当しているかどうか確認-->
+          <% if @event.charged_by?(current_user) %>
+            <!--カレントユーザーがタスクを担当している：辞退ボタンを表示 -->
+            <%= link_to event_charges_path(@event), method: :delete do %>
+              <btn class="btn btn-danger">辞退する</btn>
+            <% end %>
+          <% else %>
+            <!--カレントユーザーがタスクを担当していない：担当ボタンを表示 -->
+            <%= link_to event_charges_path(@event), method: :post do %>
+              <btn class="btn btn-success">担当する</btn>
+            <% end %>
+          <% end %>
         </div>
-      <% else %>
-        <div class="ml-auto">
-        <%= link_to event_charges_path(@event), method: :post do %>
-          <btn class="btn btn-success">担当する</btn>
-        <% end %>
-        </div>
-      <% end %>
       </div>
       <div class="row mt-5">
         <div class="col-12">
         <%= form_with model: @comment, url: event_comments_path(@event, event_id: @event.id), method: :post do |f| %>
           <div class="form-field">
             <h3>コメント投稿</h3>
-            <%= f.text_area :body, row: 3, class: "form-control" %>
+            <%= f.text_area :body, row: 3, placeholder: "200文字以内で記載してください", class: "form-control" %>
           </div>
           <div class="ml-auto">
             <%= f.submit "投稿する", class: "btn btn-outline-primary mt-1" %>

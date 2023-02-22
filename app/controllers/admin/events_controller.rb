@@ -4,10 +4,11 @@ class Admin::EventsController < ApplicationController
   def index
     @user = User.find_by(id: params[:user_id])
     @events = Event.all
+    # タスクを条件検索した場合のタスク一覧
     @events = @events.where(genre_id: params[:genre_id]) if params[:genre_id].present? #ジャンル検索
     @events = @events.where(user_id: params[:user_id]) if params[:user_id].present? #タスク登録者で検索
     @events = @events.where(is_finished: params[:is_finished]) if params[:is_finished].present? #タスク進捗状況で検索
-    @events = @events.where('title LIKE ?',"%#{params[:search]}%").or(@events.where('body LIKE ?',"%#{params[:search]}%")) if params[:search].present?
+    @events = @events.where('title LIKE ?',"%#{params[:search]}%").or(@events.where('body LIKE ?',"%#{params[:search]}%")) if params[:search].present? #検索ボックスで検索
     @events = @events.order(start_time: "ASC").page(params[:page])
   end
 
@@ -23,6 +24,7 @@ class Admin::EventsController < ApplicationController
   end
 
   def update
+    # start_time、end_timeはdatetime型。 取得した日付dateと時間timeを合わせてdatetimeを生成する
     start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time(4i)"].to_i}:#{ params["event"]["start_time(5i)"].to_i}"
     @start_time = Time.zone.parse(start_str).to_datetime
     end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time(4i)"].to_i}:#{ params["event"]["end_time(5i)"].to_i}"

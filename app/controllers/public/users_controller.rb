@@ -5,11 +5,9 @@ class Public::UsersController < ApplicationController
 
   def show
     # flash = nil
-    @user = current_user
   end
 
   def edit
-    @user = current_user
   end
 
   def update
@@ -37,6 +35,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
   end
 
+  # ゲストユーザーの編集禁止
   def ensure_normal_user
     if current_user.email == "guest@example.com"
       flash[:alert] = "ゲストユーザーの情報の編集はできません"

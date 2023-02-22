@@ -4,9 +4,9 @@ class Public::ChargesController < ApplicationController
   def create
     event = Event.find(params[:event_id])
     charge = Charge.new
-    charge.user_id =current_user.id
-    charge.event_id =event.id
-    charge.event_start_time =event.start_time
+    charge.user_id = current_user.id
+    charge.event_id = event.id
+    charge.event_start_time = event.start_time
     charge.save
     redirect_to event_path(event)
   end

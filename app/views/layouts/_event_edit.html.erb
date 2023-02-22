@@ -8,11 +8,11 @@
       </tr>
       <tr>
         <td><%= f.label :title, "タイトル" %></td>
-        <td><%= f.text_field :title, class: "form-control" %></td>
+        <td><%= f.text_field :title, placeholder: "10文字以内で記載してください", class: "form-control" %></td>
       </tr>
       <tr>
         <td><%= f.label :body, "内容" %></td>
-        <td><%= f.text_area :body, row: 3, class: "form-control" %></td>
+        <td><%= f.text_area :body, row: 3, placeholder: "200文字以内で記載してください", class: "form-control" %></td>
       </tr>
       <tr>
         <td><%= f.label :start_on, "日付" %></td>

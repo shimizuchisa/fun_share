@@ -4,10 +4,12 @@ class Public::EventsController < ApplicationController
   def index
     @user = current_user
     @events = Event.all
-    @events = @events.where(genre_id: params[:genre_id]) if params[:genre_id].present?
-    @events = @events.where(user_id: params[:user_id]) if params[:user_id].present?
-    @events = @events.where(is_finished: params[:is_finished]) if params[:is_finished].present?
-    @events = @events.where('title LIKE ?',"%#{params[:search]}%").or(@events.where('body LIKE ?',"%#{params[:search]}%")) if params[:search]
+    # タスクを条件検索した場合のタスク一覧
+    @events = @events.where(genre_id: params[:genre_id]) if params[:genre_id].present? #ジャンル検索
+    @events = @events.where(user_id: params[:user_id]) if params[:user_id].present? #タスク登録者で検索
+    @events = @events.where(is_finished: params[:is_finished]) if params[:is_finished].present? #タスク進捗状況で検索
+    @events = @events.where('title LIKE ?',"%#{params[:search]}%").or(@events.where('body LIKE ?',"%#{params[:search]}%")) if params[:search].present? #検索ボックスで検索
+    # タスクの昇順に表示する
     @events = @events.order(start_time: "ASC").page(params[:page])
   end
 
@@ -16,12 +18,12 @@ class Public::EventsController < ApplicationController
   end
 
   def create
-    start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time"].to_i}}"
+    # start_time、end_timeはdatetime型。 取得した日付dateと時間timeを合わせてdatetimeを生成する
+    start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time"].to_i}"
     @start_time = Time.zone.parse(start_str).to_datetime
-    end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time"].to_i}}"
+    end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time"].to_i}"
     @end_time = Time.zone.parse(end_str).to_datetime
     @event = Event.new(event_params.merge(start_time: @start_time, end_time: @end_time))
-   # @event = Event.new(event_params)
     @event.user_id = current_user.id
     if @event.save
       redirect_to event_path(@event)
@@ -46,6 +48,7 @@ class Public::EventsController < ApplicationController
   end
 
   def update
+    # start_time、end_timeはdatetime型。 取得した日付dateと時間timeを合わせてdatetimeを生成する
     start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time(4i)"].to_i}:#{ params["event"]["start_time(5i)"].to_i}"
     @start_time = Time.zone.parse(start_str).to_datetime
     end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time(4i)"].to_i}:#{ params["event"]["end_time(5i)"].to_i}"

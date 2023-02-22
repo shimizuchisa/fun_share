@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
-      <h1 class="col-md-12 text-left">カレンダー</h1>
+      <h1 class="text-left">カレンダー</h1>
       <%= month_calendar events: @events do |date, events| %>
       <div>
         <%= date.day %>
@@ -11,7 +11,7 @@
             <div class="text-left">
               <!--タスク担当者がいるか？-->
               <% if !event.charges.exists? %>
-                <span class="text-danger">・<%= event.title %><span><i class="fas fa-exclamation-triangle", style="color: red;"></i></span></%></span>
+                <span class="text-danger">・<%= event.title %><span><i class="fas fa-exclamation-triangle", style="color: red;"></i></span></span>
               <!--担当者はいる　かつ　完了していない-->
               <% elsif event.charges.exists? && (event.is_finished != "completed")%>
                 <span class="text-warning">・<%= event.title %></span>
@@ -23,6 +23,9 @@
           <% end %>
         <% end %>
       <% end %>
+      <p class="text-right" style="font-size: 0.8rem;">＊タスク担当者が決まっていないタスクは赤字・<span><i class="fas fa-exclamation-triangle"></i></span>が付きます</p>
+      <p class="text-right" style="font-size: 0.8rem;">＊未完了タスクは黄字になります</p>
+      <p class="text-right" style="font-size: 0.8rem;">＊完了タスクは青字・<span><i class="fas fa-check-circle"></i></span>が付きます</p>
     </div>
   </div>
 </div>

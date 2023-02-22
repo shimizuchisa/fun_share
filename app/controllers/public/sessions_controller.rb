@@ -45,6 +45,7 @@ class Public::SessionsController < Devise::SessionsController
     end
   end
 
+  # ゲストログイン用メソッド
   def guest_sign_in
     user = User.guest
     sign_in user
