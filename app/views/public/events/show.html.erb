@@ -39,24 +39,21 @@
     <div class="col-md-4 offset-md-1">
       <!--タスク担当者を表示-->
       <%= render 'layouts/event_charger', event: @event %>
-      <div class="row w-100">
-        <div class="ml-auto">
-          <!--カレントユーザーがタスクを担当しているかどうか確認-->
-          <% if @event.charged_by?(current_user) %>
-            <!--カレントユーザーがタスクを担当している：辞退ボタンを表示 -->
-            <%= link_to event_charges_path(@event), method: :delete do %>
-              <btn class="btn btn-danger">辞退する</btn>
-            <% end %>
-          <% else %>
-            <!--カレントユーザーがタスクを担当していない：担当ボタンを表示 -->
-            <%= link_to event_charges_path(@event), method: :post do %>
-              <btn class="btn btn-success">担当する</btn>
-            <% end %>
+      <div class="justify-content-end">
+        <!--カレントユーザーがタスクを担当しているかどうか確認-->
+        <% if @event.charged_by?(current_user) %>
+          <!--カレントユーザーがタスクを担当している：辞退ボタンを表示 -->
+          <%= link_to event_charges_path(@event), method: :delete do %>
+            <btn class="btn btn-danger ml-auto">辞退する</btn>
           <% end %>
-        </div>
+        <% else %>
+          <!--カレントユーザーがタスクを担当していない：担当ボタンを表示 -->
+          <%= link_to event_charges_path(@event), method: :post do %>
+            <btn class="btn btn-success ml-auto">担当する</btn>
+          <% end %>
+        <% end %>
       </div>
-      <div class="row mt-5">
-        <div class="col-12">
+      <div class="justify-content-end">
         <%= form_with model: @comment, url: event_comments_path(@event, event_id: @event.id), method: :post do |f| %>
           <div class="form-field">
             <h3>コメント投稿</h3>
@@ -66,7 +63,6 @@
             <%= f.submit "投稿する", class: "btn btn-outline-primary mt-1" %>
           </div>
         <% end %>
-        </div>
       </div>
       <%= render "layouts/comments_index", comments: @comments %>
     </div>
