@@ -12,11 +12,19 @@ class Event < ApplicationRecord
   validates :start_time, presence: true
   validates :end_time, presence: true
   validate :start_end_time
+  validate :set_start_on
 
   # 開始時間・終了時間の前後チェック
   def start_end_time
-    errors.add(:end_time, "は開始時間より遅い時間をい設定してください") unless
+    errors.add(:end_time, "は開始時間より遅い時間を設定してください") unless
     self.start_time < self.end_time
+  end
+
+  def set_start_on
+    if Time.zone.parse(start_str).to_datetime.present?
+    else
+      errors.add(:start_on, "を入力してください")
+    end
   end
 
   def charged_by?(user)

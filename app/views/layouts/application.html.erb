@@ -93,13 +93,24 @@
               </div>
             </div>
             <div class="ml-auto align-items-end">
-              <%= form_with url: admin_events_path, method: :get do |f| %>
-                <table>
-                  <tr>
-                    <td><%= f.text_field :search, class: "form-control" %></td>
-                    <td><%= f.submit "検索", class: "btn btn-secondary" %></td>
-                  </tr>
-                </table>
+              <% if user_signed_in? %>
+                <%= form_with url: events_path, method: :get do |f| %>
+                  <table>
+                    <tr>
+                      <td><%= f.text_field :search, class: "form-control" %></td>
+                      <td><%= f.submit "検索", class: "btn btn-secondary" %></td>
+                    </tr>
+                  </table>
+                <% end %>
+              <% elsif admin_signed_in? %>
+                <%= form_with url: admin_events_path, method: :get do |f| %>
+                  <table>
+                    <tr>
+                      <td><%= f.text_field :search, class: "form-control" %></td>
+                      <td><%= f.submit "検索", class: "btn btn-secondary" %></td>
+                    </tr>
+                  </table>
+                <% end %>
               <% end %>
             </div>
           </div>

@@ -45,7 +45,9 @@ ja: # 日本語の設定を行う
         start_time:  開始時間
         end_time: 終了時間
       genre:
-        name:  ジャンル名
+        name: ジャンル名
+      comment:
+        body: コメント
     errors:
       format: "%{attribute}%{message}"
       messages:

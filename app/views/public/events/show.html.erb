@@ -32,7 +32,7 @@
       <!--カレントユーザーがタスク登録者あるいはタスク担当者ならタスク編集ボタンを表示-->
       <% if @event.charged_by?(current_user) || current_user == @event.user %>
         <div class="mb-4">
-          <%= link_to "タスク編集", edit_event_path(@event), class: "btn btn-primary" %>
+          <%= link_to "タスク編集", events_myevent_edit_path(@event, event_id: @event.id), class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
@@ -45,21 +45,22 @@
           <% if @event.charged_by?(current_user) %>
             <!--カレントユーザーがタスクを担当している：辞退ボタンを表示 -->
             <%= link_to event_charges_path(@event), method: :delete do %>
-              <btn class="btn btn-danger ml-auto">辞退する</btn>
+              <span class="btn btn-danger ml-auto">辞退する</span>
             <% end %>
           <% else %>
             <!--カレントユーザーがタスクを担当していない：担当ボタンを表示 -->
             <%= link_to event_charges_path(@event), method: :post do %>
-              <btn class="btn btn-success ml-auto">担当する</btn>
+              <span class="btn btn-success ml-auto">担当する</span>
             <% end %>
           <% end %>
         </div>
       </div>
       <div class="row mt-5">
         <div class="col-12">
-          <%= form_with model: @comment, url: event_comments_path(@event, event_id: @event.id), method: :post do |f| %>
+          <%= form_with model: @comment, url: event_comments_path(@event), method: :post do |f| %>
             <div class="form-field">
               <h3>コメント投稿</h3>
+              <%= render 'layouts/error_messages', variable: @comment %>
               <%= f.text_area :body, row: 3, placeholder: "200文字以内で記載してください", class: "form-control" %>
             </div>
             <div class="d-flex justify-content-end">

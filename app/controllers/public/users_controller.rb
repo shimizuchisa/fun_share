@@ -4,7 +4,6 @@ class Public::UsersController < ApplicationController
   before_action :ensure_normal_user, only: [:update]
 
   def show
-    # flash = nil
   end
 
   def edit
