@@ -23,6 +23,10 @@
             <td>
               <%= link_to "削除", admin_event_comment_path(comment.event, comment, event_id: comment.event.id, comment_id: comment.id), method: :delete, data: { confirm: 'コメント削除しますか？' }, class: "btn btn-outline-danger btn-sm" %>
             </td>
+          <% elsif user_signed_in? %>
+            <td>
+              <%= link_to "削除", event_comment_path(comment.event, comment, event_id: comment.event.id, comment_id: comment.id), method: :delete, data: { confirm: 'コメント削除しますか？' }, class: "btn btn-outline-danger btn-sm" %>
+            </td>
           <% end %>
         </tr>
         <% end %>

@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     resources :events do
       resource :favorites, only: [:create, :destroy]
       resource :charges, only: [:create, :destroy]
-      resources :comments, only: [:create]
+      resources :comments, only: [:create, :destroy]
     end
     resources :charges, only: [:index]
     resources :favorites, only: [:index]

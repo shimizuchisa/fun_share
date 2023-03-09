@@ -19,6 +19,13 @@ class Public::CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    @event = Event.find_by(id: params[:event_id])
+    @comment = Comment.find_by(id: params[:comment_id])
+    @comment.destroy
+    redirect_to event_path(@event)
+  end
+
   private
 
   def comment_params
