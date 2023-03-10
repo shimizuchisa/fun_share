@@ -21,7 +21,7 @@ class Event < ApplicationRecord
   end
 
   def set_start_on
-    if Time.zone.parse(start_str).to_datetime.present?
+    if self.start_time.present?
     else
       errors.add(:start_on, "を入力してください")
     end

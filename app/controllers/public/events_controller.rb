@@ -18,30 +18,21 @@ class Public::EventsController < ApplicationController
   end
 
   def create
-    # start_time、end_timeはdatetime型。 取得した日付dateと時間timeを合わせてdatetimeを生成する
-    # if params["event"]["start_on"] == ""
-      # @event = Event.new
-      # flash[:alert] = "日付は必ず入力してください。全ての項目を入力してください。"
-      # render :new
-    # else
-      start_str = "#{params["event"]["start_on"]} #{params["event"]["start_time"].to_i}"
-      Time.zone.parse(start_str).to_datetime
-      @start_time = Time.zone.parse(start_str).to_datetime
-      end_str = "#{params["event"]["start_on"]} #{params["event"]["end_time"].to_i}"
-      @end_time = Time.zone.parse(end_str).to_datetime
-      @event = Event.new(event_params.merge(start_time: @start_time, end_time: @end_time))
-      @event.user_id = current_user.id
-      if @event.save
-        redirect_to event_path(@event)
-        flash[:notice] = "タスクを登録しました"
-      else
-        # @event = Event.new
-        # @event.start_on = params["event"]["start_on"]
-        start_time = params["event"]["start_time"]
-        end_time = params["event"]["end_time"]
-        render :new
-      end
-    # end
+    start_str = "#{params["event"]["start_on"]} #{params["event"]["start_time"].to_i}"
+    Time.zone.parse(start_str).to_datetime
+    @start_time = Time.zone.parse(start_str).to_datetime
+    end_str = "#{params["event"]["start_on"]} #{params["event"]["end_time"].to_i}"
+    @end_time = Time.zone.parse(end_str).to_datetime
+    @event = Event.new(event_params.merge(start_time: @start_time, end_time: @end_time))
+    @event.user_id = current_user.id
+    if @event.save
+      redirect_to event_path(@event)
+      flash[:notice] = "タスクを登録しました"
+    else
+      # start_time = params["event"]["start_time"]
+      # end_time = params["event"]["end_time"]
+      render :new
+    end
   end
 
   def show
@@ -55,16 +46,16 @@ class Public::EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find_by(id: params[:event_id])
+    @event = Event.find(params[:id])
   end
 
   def update
+    @event = Event.find(params[:id])
     # start_time、end_timeはdatetime型。 取得した日付dateと時間timeを合わせてdatetimeを生成する
     start_str =  "#{params["event"]["start_on"]} #{params["event"]["start_time(4i)"].to_i}:#{ params["event"]["start_time(5i)"].to_i}"
     @start_time = Time.zone.parse(start_str).to_datetime
     end_str =  "#{params["event"]["start_on"]} #{params["event"]["end_time(4i)"].to_i}:#{ params["event"]["end_time(5i)"].to_i}"
     @end_time = Time.zone.parse(end_str).to_datetime
-    @event = Event.find(params[:id])
     if @event.update(event_params.merge(start_time: @start_time, end_time: @end_time))
       redirect_to event_path(@event)
       flash[:notice] = "タスク情報を更新しました"

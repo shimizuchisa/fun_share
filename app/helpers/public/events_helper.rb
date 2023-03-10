@@ -1,6 +1,6 @@
 module Public::EventsHelper
   def times
-           ["0:00",
+          ["0:00",
             "0:30",
             "1:00",
             "1:30",

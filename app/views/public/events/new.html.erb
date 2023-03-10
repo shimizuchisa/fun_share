@@ -19,15 +19,16 @@
           </tr>
           <tr>
             <td><%= f.label :start_on, "日付" %></td>
-            <td><%= f.date_field :start_on, class: "form-control" %></td>
+            <td><%= f.date_field :start_on, value: Time.zone.today, class: "form-control" %></td>
           </tr>
           <tr>
             <td><%= f.label :start_time, "開始時間" %></td>
-            <td><%= f.select :start_time, times, { include_blank: "--", selected: params[:start_time] }, class: "time-select", style: "display: inline-block;" %></td>
+            <!--timesはhelperに記載-->
+            <td><%= f.select :start_time, times, {include_blank: "--" }, class: "time-select", style: "display: inline-block;" %></td>
           </tr>
            <tr>
             <td><%= f.label :end_time, "終了時間" %></td>
-            <td><%= f.select :end_time, times, { include_blank: "--", selected: params[:end_time] }, class: "time-select", style: "display: inline-block;" %></td>
+            <td><%= f.select :end_time, times, {include_blank: "--" }, class: "time-select", style: "display: inline-block;" %></td>
           </tr>
         </table>
         <div>

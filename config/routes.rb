@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     patch 'users/mypage' => 'users#update'
     get 'users/unsubscribe' => 'users#unsubscribe' #退会処理確認画面
     patch 'users/withdraw' => 'users#withdraw' #退会処理
-    get 'events/myevent/edit' => 'events#edit'
+    # get 'events/myevent/edit' => 'events#edit'
     resources :events do
       resource :favorites, only: [:create, :destroy]
       resource :charges, only: [:create, :destroy]

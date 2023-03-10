@@ -32,7 +32,7 @@
       <!--カレントユーザーがタスク登録者あるいはタスク担当者ならタスク編集ボタンを表示-->
       <% if @event.charged_by?(current_user) || current_user == @event.user %>
         <div class="mb-4">
-          <%= link_to "タスク編集", events_myevent_edit_path(@event, event_id: @event.id), class: "btn btn-primary" %>
+          <%= link_to "タスク編集", edit_event_path(@event), class: "btn btn-primary" %>
         </div>
       <% end %>
     </div>
