@@ -15,6 +15,7 @@
           <tr>
             <th>ジャンルID</th>
             <th>ジャンル名</th>
+            <th>ステータス</th>
           </tr>
         </thead>
         <tbody>
@@ -24,6 +25,13 @@
             <td>
               <%= link_to(edit_admin_genre_path(genre)) do %>
                 <%= genre.name %>
+              <% end %>
+            </td>
+            <td>
+              <% if genre.is_deleted == false %>
+                有効
+              <% elsif genre.is_deleted == true %>
+                無効
               <% end %>
             </td>
           </tr>
