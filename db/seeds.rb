@@ -12,10 +12,10 @@ Admin.create!(
 
 genres = Genre.create!(
   [
-    {name: '学年部'},
-    {name: '成人教育部'},
-    {name: '広報部'},
-    {name: '校外補導部'}
+    {name: '学年部', is_deleted: false },
+    {name: '成人教育部', is_deleted: false },
+    {name: '広報部', is_deleted: false },
+    {name: '校外補導部', is_deleted: false }
   ]
 )
 
