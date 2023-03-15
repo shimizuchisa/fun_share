@@ -3,7 +3,7 @@ class Admin::EventsController < ApplicationController
 
   def index
     @user = User.find_by(id: params[:user_id])
-    @events = Event.all
+    @events = Event.where.not(is_finished: "completed")
     # タスクを条件検索した場合のタスク一覧
     @events = @events.where(genre_id: params[:genre_id]) if params[:genre_id].present? #ジャンル検索
     @events = @events.where(user_id: params[:user_id]) if params[:user_id].present? #タスク登録者で検索
