@@ -3,7 +3,7 @@
   <table class="table table-borderless">
     <tr>
       <td><%= f.label :genre_id, "ジャンル" %></td>
-      <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), {}, class: "form-control" %></td>
+      <td><%= f.select :genre_id, options_from_collection_for_select(Genre.where(is_deleted: false), :id, :name), {}, class: "form-control" %></td>
       <!--f.select :プロパティ名, options_from_collection_for_select(モデル, :フォームで送る値(メソッド), :セレクトボックスに表示する値(メソッド))-->
     </tr>
     <tr>

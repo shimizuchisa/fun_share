@@ -7,7 +7,7 @@
         <table class="table table-borderless">
           <tr>
             <td><%= f.label :genre_id, "ジャンル" %></td>
-            <td><%= f.select :genre_id, options_from_collection_for_select(Genre.all, :id, :name), { prompt: "選択してください"}, class: "form-control" %></td>
+            <td><%= f.select :genre_id, options_from_collection_for_select(Genre.where(is_deleted: false), :id, :name), { prompt: "選択してください"}, class: "form-control" %></td>
           </tr>
           <tr>
             <td><%= f.label :title, "タイトル" %></td>
